@@ -39,7 +39,7 @@ if [ "$(uname)" = "Linux" ]; then
 fi
 
 # Universal utils
-source "${SCRIPT_BASE_DIR}/utils/z/z.sh"
+[ -e "${SCRIPT_BASE_DIR}/utils/z/z.sh" ] && . "${SCRIPT_BASE_DIR}/utils/z/z.sh"
 
 # show status if exists
 if [ -x ~/bin/status.sh ]; then

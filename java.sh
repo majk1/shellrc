@@ -1,7 +1,7 @@
 
 # JAVA
 
-if [ "$(uname)" == "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
     export JAVA_7_HOME=$(/usr/libexec/java_home -v1.7 2>/dev/null)
     export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8 2>/dev/null)
 
