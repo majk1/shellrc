@@ -29,10 +29,14 @@ alias grephashempty='grep -v -e "^.*#" -e "^$"'
 
 alias 7zPPMd='7z a -t7z -mx=9 -m0=PPMd'
 alias 7zUltra='7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
-
 alias openPorts='lsof -P -iTCP -sTCP:LISTEN'
-
 alias normalize='chown -R $USER:$MAIN_GROUP *; find . -type d -exec chmod 755 {} \;; find . -type f -exec chmod 644 {} \;'
+
+if [ "$USER" = "root" ]; then
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias mv='mv -i'
+fi
 
 # functions
 
