@@ -57,17 +57,13 @@ type -p dircolors >/dev/null 2>&1;
 
 # prompt
 
-_prompt_time() {
-    date +%H:%M
-}
-
 setopt PROMPT_SUBST
 [ -z "$PROMPT_DIRECTORY" ] && PROMPT_DIRECTORY='~'
 
 if [ "$USER" = "root" ]; then
-    PS1="$(print "%{\e[0;37m%}[\$(_prompt_time)]%{\e[0m%} [%{\e[0;31m%}%?%{\e[0m%}:%{\e[1;31m%}%m%{\e[0m%}] %{\e[1;36m%}%\$PROMPT_DIRECTORY%{\e[0m%} %{\e[0;32m%}\$%{\e[0m%}") "
+    PS1="$(print "[%{\e[0;31m%}%?%{\e[0m%}:%{\e[1;31m%}%m%{\e[0m%}] %{\e[1;36m%}%\$PROMPT_DIRECTORY%{\e[0m%} %{\e[0;32m%}\$%{\e[0m%}") "
 else
-    PS1="$(print "%{\e[0;37m%}[\$(_prompt_time)]%{\e[0m%} [%{\e[0;31m%}%?%{\e[0m%}:%{\e[1;32m%}%n%{\e[0m%}@%{\e[1;33m%}%m%{\e[0m%}] \$(getProjectNameInDir .)%{\e[1;36m%}%\$PROMPT_DIRECTORY%{\e[0m%}%{\e[0;35m%}\$(_git_ps1)%{\e[0m%} %{\e[0;32m%}\$%{\e[0m%}") "
+    PS1="$(print "[%{\e[0;31m%}%?%{\e[0m%}:%{\e[1;32m%}%n%{\e[0m%}@%{\e[1;33m%}%m%{\e[0m%}] \$(getProjectNameInDir .)%{\e[1;36m%}%\$PROMPT_DIRECTORY%{\e[0m%}%{\e[0;35m%}\$(_git_ps1)%{\e[0m%} %{\e[0;32m%}\$%{\e[0m%}") "
 fi
 
 [ -z $MC_SID ] && RPROMPT="$(print '%{\e[2;38m%}%y | %T%{\e[0m%}')"
