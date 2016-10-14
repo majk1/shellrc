@@ -13,12 +13,14 @@ shopt -s checkwinsize
 
 # setting the prompt
 
+[ -z "$PROMPT_DIRECTORY" ] && PROMPT_DIRECTORY='\w'
+
 function custom_prompt_command() {
 	local EXIT=$?
 	if [ "$USER" == "root" ]; then
-		PS1="\[\e[1;37m\][\[\e[m\]\A\[\e[1;37m\]] \[\e[m\][\[\e[1;31m\]$EXIT\[\e[m\]:\[\e[1;31m\]\h\[\e[m\]] \[\e[1;34m\]\w\[\e[m\] \[\e[0;32m\]\$ \[\e[m\]"
+		PS1="\[\e[1;37m\][\A] \[\e[m\][\[\e[1;31m\]$EXIT\[\e[m\]:\[\e[1;31m\]\h\[\e[m\]] \[\e[1;36m\]$PROMPT_DIRECTORY\[\e[m\] \[\e[0;32m\]\$ \[\e[m\]"
 	else
-		PS1="\[\e[1;37m\][\[\e[m\]\A\[\e[1;37m\]] \[\e[m\][\[\e[1;31m\]$EXIT\[\e[m\]:\[\e[1;32m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]] \$(getProjectNameInDir .)\[\e[1;34m\]\w\[\e[m\]\[\e[0;35m\]\$(_git_ps1)\[\e[m\] \[\e[0;32m\]\$ \[\e[m\]"
+		PS1="\[\e[1;37m\][\A] \[\e[m\][\[\e[1;31m\]$EXIT\[\e[m\]:\[\e[1;32m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]] \$(getProjectNameInDir .)\[\e[1;36m\]$PROMPT_DIRECTORY\[\e[m\]\[\e[0;35m\]\$(_git_ps1)\[\e[m\] \[\e[0;32m\]\$ \[\e[m\]"
 	fi
 	type -t update_terminal_cwd >/dev/null 2>&1
 	if [ $? -eq 0 ]; then
@@ -28,9 +30,9 @@ function custom_prompt_command() {
 PROMPT_COMMAND=custom_prompt_command
 
 shortPrompt() {
-	PS1="\[\e[1;37m\][\[\e[m\]\A\[\e[1;37m\]] \[\e[m\][\[\e[1;31m\]$?\[\e[m\]:\[\e[1;32m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]] \$(getProjectNameInDir .)\[\e[1;34m\]\W\[\e[m\]\[\e[0;35m\]\$(_git_ps1)\[\e[m\] \[\e[0;32m\]\$ \[\e[m\]"
+    PROMPT_DIRECTORY='\W'
 }
 
 longPrompt() {
-	PS1="\[\e[1;37m\][\[\e[m\]\A\[\e[1;37m\]] \[\e[m\][\[\e[1;31m\]$?\[\e[m\]:\[\e[1;32m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]] \$(getProjectNameInDir .)\[\e[1;34m\]\w\[\e[m\]\[\e[0;35m\]\$(_git_ps1)\[\e[m\] \[\e[0;32m\]\$ \[\e[m\]"
+    PROMPT_DIRECTORY='\w'
 }

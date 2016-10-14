@@ -52,12 +52,30 @@ bindkey "\e[F" end-of-line
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-eval `dircolors -b`
+type -p dircolors >/dev/null 2>&1;
+[ $? -eq 0 ] && eval `dircolors -b`
 
-if [ "$USER" == "root" ]; then
-    PS1="$(print '[%{\e[0;36m%}%?%{\e[0m%}:%{\e[1;31m%}%m%{\e[0m%}] %{\e[1;36m%}%1~%{\e[0m%} %{\e[0;32m%}%#%{\e[0m%}') "
+# prompt
+
+_prompt_time() {
+    date +%H:%M
+}
+
+setopt PROMPT_SUBST
+[ -z "$PROMPT_DIRECTORY" ] && PROMPT_DIRECTORY='~'
+
+if [ "$USER" = "root" ]; then
+    PS1="$(print "%{\e[0;37m%}[\$(_prompt_time)]%{\e[0m%} [%{\e[0;31m%}%?%{\e[0m%}:%{\e[1;31m%}%m%{\e[0m%}] %{\e[1;36m%}%\$PROMPT_DIRECTORY%{\e[0m%} %{\e[0;32m%}\$%{\e[0m%}") "
 else
-    PS1="$(print '[%{\e[0;36m%}%?%{\e[0m%}:%{\e[1;32m%}%n%{\e[0m%}@%{\e[1;33m%}%m%{\e[0m%}] %{\e[1;36m%}%1~%{\e[0m%} %{\e[0;32m%}%#%{\e[0m%}') "
+    PS1="$(print "%{\e[0;37m%}[\$(_prompt_time)]%{\e[0m%} [%{\e[0;31m%}%?%{\e[0m%}:%{\e[1;32m%}%n%{\e[0m%}@%{\e[1;33m%}%m%{\e[0m%}] \$(getProjectNameInDir .)%{\e[1;36m%}%\$PROMPT_DIRECTORY%{\e[0m%}%{\e[0;35m%}\$(_git_ps1)%{\e[0m%} %{\e[0;32m%}\$%{\e[0m%}") "
 fi
 
 [ -z $MC_SID ] && RPROMPT="$(print '%{\e[2;38m%}%y | %T%{\e[0m%}')"
+
+shortPrompt() {
+    PROMPT_DIRECTORY='1~'
+}
+
+longPrompt() {
+    PROMPT_DIRECTORY='~'
+}
