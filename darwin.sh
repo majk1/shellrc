@@ -1,7 +1,7 @@
 
 # aliases
 
-alias df='df -Ph -T ufsd_NTFS,hfs,msdos'
+alias df='df -Ph -T ufsd_NTFS,hfs,msdos,exfat'
 
 # functions
 
