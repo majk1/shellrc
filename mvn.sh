@@ -1,7 +1,7 @@
 
 # MAVEN
 
-export MAVEN_OPTS="$JAVA_OPTS -noverify -Xmx2048m -XX:MaxPermSize=256m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+export MAVEN_OPTS="$JAVA_OPTS -noverify -Xmx2048m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
 alias mvnAllNoTest='mvn clean install -DskipTests'
 alias mvnAllNoIT='mvn clean install -DskipITs'
