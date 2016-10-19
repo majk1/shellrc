@@ -11,7 +11,7 @@ alias mvnRemoteDebug='MAVEN_OPTS="$MAVEN_OPTS -Xdebug -Xrunjdwp:transport=dt_soc
 
 if [ "$(uname)" = "Darwin" ]; then
     launchctl setenv M2_HOME $M2_HOME
-    launchctl setenv MAVEN_OPTS $MAVEN_OPTS
+    launchctl setenv MAVEN_OPTS "$MAVEN_OPTS"
 fi
 
 # functions
