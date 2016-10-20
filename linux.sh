@@ -19,10 +19,17 @@ function clearCache() {
 		fi
 	fi
 	sync
-	if type -p sudo >/dev/null 2>/dev/null; then
-		echo "echo $MODE > /proc/sys/vm/drop_caches" | sudo sh
+	if [ "$USER" = "root" ]; then
+		echo $MODE > /proc/sys/vm/drop_caches
 	else
-		su - -c "echo $MODE > /proc/sys/vm/drop_caches"
+		echo -n "Switching to root... "
+		if type -p sudo >/dev/null 2>/dev/null; then
+			echo "with sudo"
+			echo "echo $MODE > /proc/sys/vm/drop_caches" | sudo sh
+		else
+			echo "with su"
+			su - -c "echo $MODE > /proc/sys/vm/drop_caches"
+		fi
 	fi
 	return 0
 }
