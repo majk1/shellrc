@@ -9,6 +9,7 @@ shopt -s checkwinsize
 # completion
 
 [ -f /etc/bash_completion ] && . /etc/bash_completion
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
 
 # setting the prompt
