@@ -4,7 +4,7 @@ Useful scripts for unix like systems.
 
 ## Usage
 
-* clone repository:
+* clone repository:  
   ```
   cd ~
   git clone https://bitbucket.org/mn3monic/scripts.git
