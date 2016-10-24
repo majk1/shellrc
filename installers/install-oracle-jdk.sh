@@ -5,6 +5,12 @@ if [ $(id -u) -ne 0 ]; then
 	exit 1
 fi
 
+if [ "$(uname)" != "Linux" ]; then
+    echo "Not supported OS type" >&2
+    echo "Currently supported OS types: Linux" >&2
+    exit 1
+fi
+
 #
 # load
 #
