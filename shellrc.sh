@@ -38,6 +38,11 @@ if [ "$(uname)" = "Linux" ]; then
     source ${SCRIPT_BASE_DIR}/linux.sh
 fi
 
+# Linux specific
+if echo "$(uname)" | grep -q -i 'cygwin'; then
+    source ${SCRIPT_BASE_DIR}/cygwin.sh
+fi
+
 # Universal utils
 [ -e "${SCRIPT_BASE_DIR}/utils/z/z.sh" ] && . "${SCRIPT_BASE_DIR}/utils/z/z.sh"
 
