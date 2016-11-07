@@ -1,5 +1,6 @@
 
 alias ls='ls --color'
+alias fixcrlf='sed -i "s/^M$//"'
 
 MAIN_GROUP=$(groups $USER | sed "s/$USER : \([^ ]\+\).*/\1/")
 export MAIN_GROUP
