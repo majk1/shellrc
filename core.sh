@@ -8,9 +8,6 @@ export MC_COLOR_TABLE=editnormal=:normal=
 export LESSCHARSET=utf-8
 export GREP_COLOR="1;33"
 
-MAIN_GROUP=$(groups $USER | sed "s/$USER : \([^ ]\+\).*/\1/")
-export MAIN_GROUP
-
 # aliases
 
 alias grep='grep --color=auto'

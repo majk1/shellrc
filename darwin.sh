@@ -3,6 +3,9 @@
 
 alias df='df -Ph -T ufsd_NTFS,hfs,msdos,exfat'
 
+MAIN_GROUP=$(groups $USER | sed "s/\([^ ]\{1,\}\).*/\1/")
+export MAIN_GROUP
+
 # functions
 
 cdf() {
