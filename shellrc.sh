@@ -44,6 +44,7 @@ if echo "$(uname)" | grep -q -i 'cygwin'; then
 fi
 
 # Universal utils
+. "${SCRIPT_BASE_DIR}/utils/mkvMergeSub.sh"
 [ -e "${SCRIPT_BASE_DIR}/utils/z/z.sh" ] && . "${SCRIPT_BASE_DIR}/utils/z/z.sh"
 
 # show status if exists
