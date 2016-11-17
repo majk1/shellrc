@@ -39,6 +39,10 @@ fi
 
 # functions
 
+sortedless() {
+	sort "$1" | less
+}
+
 ex() {
     if [[ -f $1 ]]; then
         case $1 in
