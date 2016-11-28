@@ -110,6 +110,16 @@ findDir() {
 	eval "find \"$1\" -type d -iname '$2'"
 }
 
+link-rc-scripts() {
+    for RC in ${SCRIPT_BASE_DIR}/rc/*rc; do
+        HOMERCNAME="${HOME}/.$(basename ${RC})"
+        echo "Linking $RC to $HOMERCNAME ..."
+        if [ -f "${HOMERCNAME}" ]; then
+            rm -f "${HOMERCNAME}" 2>&1 >/dev/null
+        fi
+        ln -s "${RC}" "${HOMERCNAME}"
+    done
+}
 
 # includes
 source $SCRIPT_BASE_DIR/idea.sh
