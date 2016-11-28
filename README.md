@@ -4,6 +4,14 @@ Useful scripts for unix like systems.
 
 ## Usage
 
+### Install script with update
+
+
+
+### Using git repo
+
+
+
 #### clone repository:
   
 ```
