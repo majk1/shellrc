@@ -20,11 +20,13 @@ source ${SCRIPT_BASE_DIR}/core.sh
 
 # bash specific
 if [ ! -z "${BASH_VERSION}" ]; then
+    export SHELL_TYPE=bash
     source ${SCRIPT_BASE_DIR}/bashrc.sh
 fi
 
 # zsh specific
 if [ ! -z "${ZSH_VERSION}" ]; then
+    export SHELL_TYPE=zsh
     source ${SCRIPT_BASE_DIR}/zshrc.sh
 fi
 

@@ -111,22 +111,13 @@ ensureBaseDir() {
 
 setupEnvVars() {
     if [ $ENVVARS -eq 1 ]; then
-        local SHELLTYPE
-        if [ ! -z "$BASH_VERSION" ]; then
-            SHELLTYPE=bash
-        elif [ ! -z "$ZSH_VERSION" ]; then
-            SHELLTYPE=zsh
-        else
-            echo "Unknown shell :(" >&2
-            exit 4
-        fi
         echo "Generating maven config shell rc file ~/.mvnrc ..."
         cat << EOF > "${HOME}/.mvnrc"
 export M2_HOME="${MAVEN_BASE_DIR}/maven"
 export PATH="\$PATH:\$M2_HOME/bin"
 EOF
-        echo "Shell type is $SHELLTYPE, inserting settings into ~/.${SHELLTYPE}rc ..."
-        SHELLRCFILE="${HOME}/.${SHELLTYPE}rc"
+        echo "Shell type is $SHELL_TYPE, inserting settings into ~/.${SHELL_TYPE}rc ..."
+        SHELLRCFILE="${HOME}/.${SHELL_TYPE}rc"
 
         if grep -q "^source ${HOME}/.mvnrc" "$SHELLRCFILE"; then
             echo "Maven rc file already sourced into shell rc file"
