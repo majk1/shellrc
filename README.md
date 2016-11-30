@@ -8,12 +8,12 @@ Useful scripts for unix like systems.
 
 with wget:
 ```
-wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -u
+wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
 ```
 
 with curl:
 ```
-curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -u
+curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
 ```
 
 for silent install use -su parameter instad of -u
@@ -22,12 +22,12 @@ for silent install use -su parameter instad of -u
 
 with wget:
 ```
-wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -a
+wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a
 ```
 
 with curl:
 ```
-curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -a
+curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a
 ```
 
 ### Using git repo
