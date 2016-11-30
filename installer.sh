@@ -124,6 +124,12 @@ if [ ! -z "$1" ]; then
             fi
         ;;
         "-u")
+            read -n 1 -p "This will install mn3monic-scripts ${LATEST_VERSION}. Continue [y/n]? " ANSWER
+            if [ "$ANSWER" != "y" ]; then
+                echo
+                echo "Stopping installation. Bye"
+                exit 127
+            fi
             download
         ;;
         "-su")

@@ -121,6 +121,10 @@ link-rc-scripts() {
     done
 }
 
+update-shellrc() {
+    wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+}
+
 # includes
 source $SCRIPT_BASE_DIR/idea.sh
 source $SCRIPT_BASE_DIR/git.sh
