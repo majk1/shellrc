@@ -4,7 +4,7 @@ Useful scripts for unix like systems.
 
 ## Usage
 
-### Install script with update
+### Install script
 
 with wget:
 ```
@@ -17,6 +17,13 @@ curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" |
 ```
 
 for silent install use -su parameter instad of -u
+
+### Upgrade / reinstall
+
+just type:
+```
+update-shellrc
+```
 
 ### List latest version
 
