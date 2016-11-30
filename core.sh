@@ -124,7 +124,8 @@ link-rc-scripts() {
 update-shellrc() {
     AVAILABLE_VERISON="$(wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a)"
     if [ "$AVAILABLE_VERISON" != "$SHELLRC_VERSION" ]; then
-        read -n 1 -p "Upgrade mn3monic-scripts to version ${AVAILABLE_VERISON} [y/n]? " ANSWER
+        echo -n "Upgrade mn3monic-scripts to version ${AVAILABLE_VERISON} [y/n]? "
+        read ANSWER
 		if [ "$ANSWER" != "y" ]; then
 			echo
 			echo "Stopping upgrade. Bye"
@@ -134,7 +135,8 @@ update-shellrc() {
     else
         if [ ! -z "$1" ]; then
             if [ "$1" == "--force" ]; then
-                read -n 1 -p "Reinstall mn3monic-scripts version ${AVAILABLE_VERISON} [y/n]? " ANSWER
+                echo -n "Reinstall mn3monic-scripts version ${AVAILABLE_VERISON} [y/n]? "
+                read ANSWER
                 if [ "$ANSWER" != "y" ]; then
                     echo
                     echo "Stopping reinstall. Bye"
