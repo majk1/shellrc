@@ -6,10 +6,31 @@ Useful scripts for unix like systems.
 
 ### Install script with update
 
+with wget:
+```
+wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -u
+```
 
+with curl:
+```
+curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -u
+```
+
+for silent install use -su parameter instad of -u
+
+### List latest version
+
+with wget:
+```
+wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -a
+```
+
+with curl:
+```
+curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | sh -s -- -a
+```
 
 ### Using git repo
-
 
 
 #### clone repository:
