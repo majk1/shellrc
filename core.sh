@@ -122,12 +122,13 @@ link-rc-scripts() {
 }
 
 update-shellrc() {
-    AVAILABLE_VERISON="$(wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a)"
-    if [ "$AVAILABLE_VERISON" != "$SHELLRC_VERSION" ]; then
-        echo -n "Upgrade mn3monic-scripts to version ${AVAILABLE_VERISON} [y/n]? "
+    local VERSIONS="$(wget --no-cache -q -O- 'https://bitbucket.org/mn3monic/scripts/downloads?tab=tags' | grep "/mn3monic/scripts/get/.*\.tar\.gz" | sed '/\/mn3monic\/scripts\/get\/.*\.tar\.gz/s/.*href="\/mn3monic\/scripts\/get\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    local LATEST="$(echo "$VERSIONS" | head -n 1)"
+    LATEST="$(wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a)"
+    if [ "$LATEST" != "$SHELLRC_VERSION" ]; then
+        echo -n "Upgrade mn3monic-scripts to version ${LATEST} [y/n]? "
         read ANSWER
 		if [ "$ANSWER" != "y" ]; then
-			echo
 			echo "Stopping upgrade. Bye"
 		else
             wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
@@ -135,22 +136,20 @@ update-shellrc() {
     else
         if [ ! -z "$1" ]; then
             if [ "$1" == "--force" ]; then
-                echo -n "Reinstall mn3monic-scripts version ${AVAILABLE_VERISON} [y/n]? "
+                echo -n "Reinstall mn3monic-scripts version ${LATEST} [y/n]? "
                 read ANSWER
                 if [ "$ANSWER" != "y" ]; then
-                    echo
                     echo "Stopping reinstall. Bye"
                 else
                     wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
                 fi
             fi
         else
-            echo "You have the latest version (${AVAILABLE_VERISON})."
+            echo "You have the latest version (${LATEST})."
             echo "To force reinstall, run update-shellrc --force"
         fi
     fi
 }
-
 
 # includes
 source $SCRIPT_BASE_DIR/idea.sh
