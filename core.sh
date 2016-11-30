@@ -122,9 +122,8 @@ link-rc-scripts() {
 }
 
 update-shellrc() {
-    local VERSIONS="$(wget --no-cache -q -O- 'https://bitbucket.org/mn3monic/scripts/downloads?tab=tags' | grep "/mn3monic/scripts/get/.*\.tar\.gz" | sed '/\/mn3monic\/scripts\/get\/.*\.tar\.gz/s/.*href="\/mn3monic\/scripts\/get\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
-    local LATEST="$(echo "$VERSIONS" | head -n 1)"
-    LATEST="$(wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a)"
+    VERSIONS="$(wget --no-cache -q -O- 'https://bitbucket.org/mn3monic/scripts/downloads?tab=tags' | grep "/mn3monic/scripts/get/.*\.tar\.gz" | sed '/\/mn3monic\/scripts\/get\/.*\.tar\.gz/s/.*href="\/mn3monic\/scripts\/get\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    LATEST="$(echo "$VERSIONS" | head -n 1)"
     if [ "$LATEST" != "$SHELLRC_VERSION" ]; then
         echo -n "Upgrade mn3monic-scripts to version ${LATEST} [y/n]? "
         read ANSWER
