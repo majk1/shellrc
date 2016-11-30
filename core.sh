@@ -122,8 +122,33 @@ link-rc-scripts() {
 }
 
 update-shellrc() {
-    wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+    AVAILABLE_VERISON="$(wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a)"
+    if [ "$AVAILABLE_VERISON" != "$SHELLRC_VERSION" ]; then
+        read -n 1 -p "Upgrade mn3monic-scripts to version ${AVAILABLE_VERISON} [y/n]? " ANSWER
+		if [ "$ANSWER" != "y" ]; then
+			echo
+			echo "Stopping upgrade. Bye"
+		else
+            wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+        fi
+    else
+        if [ ! -z "$1" ]; then
+            if [ "$1" == "--force" ]; then
+                read -n 1 -p "Reinstall mn3monic-scripts version ${AVAILABLE_VERISON} [y/n]? " ANSWER
+                if [ "$ANSWER" != "y" ]; then
+                    echo
+                    echo "Stopping reinstall. Bye"
+                else
+                    wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+                fi
+            fi
+        else
+            echo "You have the latest version (${AVAILABLE_VERISON})."
+            echo "To force reinstall, run update-shellrc --force"
+        fi
+    fi
 }
+
 
 # includes
 source $SCRIPT_BASE_DIR/idea.sh
