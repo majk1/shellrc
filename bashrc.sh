@@ -27,6 +27,7 @@ function custom_prompt_command() {
 	if [ $? -eq 0 ]; then
 		update_terminal_cwd
 	fi
+	echo -ne "\033]0;${USER}@${HOSTNAME} - ${PWD/#$HOME/\~} \007"
 }
 PROMPT_COMMAND=custom_prompt_command
 
