@@ -110,6 +110,10 @@ findDir() {
 	eval "find \"$1\" -type d -iname '$2'"
 }
 
+withoutExt() {
+	echo "${1%.*}"
+}
+
 link-rc-scripts() {
     for RC in ${SCRIPT_BASE_DIR}/rc/*rc; do
         HOMERCNAME="${HOME}/.$(basename ${RC})"
