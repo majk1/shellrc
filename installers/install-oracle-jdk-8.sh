@@ -322,7 +322,7 @@ if [ $INSTALL_PROFILE -eq 1 ]; then
 cat << EOF > /etc/profile.d/oracle-jdk.sh
 #!/bin/sh
 
-JAVA_OPTS="-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8 -noverify -Xmx1g -XX:MaxPermSize=256m"
+JAVA_OPTS="-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8 -noverify -Xmx1g -XX:MaxMetaspaceSize=256m"
 JAVA_HOME=${JDK_LINK}
 PATH=\$JAVA_HOME/bin:\$PATH
 
