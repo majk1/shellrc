@@ -55,7 +55,7 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
- * **1.3**
+ * **1.3**  
    Java 9 support PATH support
    Java 8 installer renamed to install-oracle-jdk-8.sh
    MaxPermSize removed from the jdk installer, added MaxMetaspaceSize  
