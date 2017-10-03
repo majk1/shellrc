@@ -16,3 +16,14 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 
 export JAVA_OPTS="-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8"
+
+jvisualvm-jboss() {
+    JBOSS_HOME="$1"
+    shift
+    
+    if [ ! -d "$JBOSS_HOME" ]; then
+        echo "Usage: jvisualvm-jboss <JBOSS HOME> [optional arguments to pass to jvisualvm]" >&2
+    else
+        jvisualvm --cp:a "${JBOSS_HOME}/bin/client/jboss-cli-client.jar" -J-Dmodule.path="${JBOSS_HOME}/modules/" "$@" 
+    fi
+}
