@@ -23,7 +23,7 @@ autoload -U colors && colors
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=10000
-setopt appendhistory autocd extendedglob
+setopt appendhistory autocd extendedglob hist_ignore_dups
 unsetopt beep nomatch notify
 bindkey -e
 
