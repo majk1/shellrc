@@ -27,3 +27,5 @@ jvisualvm-jboss() {
         jvisualvm --cp:a "${JBOSS_HOME}/bin/client/jboss-cli-client.jar" -J-Dmodule.path="${JBOSS_HOME}/modules/" "$@" 
     fi
 }
+
+alias jmemstat="${SCRIPT_BASE_DIR}/utils/jmemstat.sh"
