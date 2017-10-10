@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# Java process memory info
+# source: https://bitbucket.org/mn3monic/scripts
+#
 
 unset j_pid
 brief=0

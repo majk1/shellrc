@@ -55,6 +55,14 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.5**  
+   Added `jmeminfo` utility script to get the jvm memory usage
+
+ * **1.4**  
+   Added `imgcat` and `imgls` utility script for **iTerm2**  
+   Added `jvisualvm-jboss` function to easy start **jvisualvm** with the right classpath and module path for **jboss/wildfly**  
+   `df` alias fixed for **apfs** (macOS)  
+
  * **1.3**  
    Java 9 support PATH support
    Java 8 installer renamed to install-oracle-jdk-8.sh
