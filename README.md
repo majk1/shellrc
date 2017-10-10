@@ -55,6 +55,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.5.1**  
+   Added oneliner `-1` argument for `jmeminfo`
+  
  * **1.5**  
    Added `jmeminfo` utility script to get the jvm memory usage
 

@@ -5,6 +5,7 @@
 #
 
 unset j_pid
+oneliner=0
 brief=0
 debug=0
 
@@ -13,6 +14,10 @@ while [ ! -z "$1" ]; do
     case "$param" in
         -b|--brief)
             brief=1
+            shift
+        ;;
+        -1)
+            oneliner=1
             shift
         ;;
         --debug)
@@ -29,13 +34,14 @@ done
 if [ -z "$j_pid" ]; then
     echo "Usage: jmemstat [-b|--brief --debug] <pid>" >&2
     echo "" >&2
-    echo "       -b|--brief       - brief output, not that table structure beauty :D" >&2
+    echo "       -1               - brief oneliner" >&2
+    echo "       -b|--brief       - brief output, not that structured beauty :D" >&2
     echo "       --debug          - raw jstat fields printed" >&2
     echo "" >&2
     exit 1
 fi
 
-[ $brief -eq 0 ] && echo "Printing memory info for java process: $j_pid"
+[ $brief -eq 0 -a $oneliner -eq 0 ] && echo "Printing memory info for java process: $j_pid"
 
 read j_eden j_old j_meta < <(jstat -gccapacity $j_pid | awk 'END{eden=$6; old=$10; meta=$13; printf "%0.2f %0.2f %0.2f", eden, old, meta}') 
 [ $debug -eq 1 ] && echo "EC=$j_eden, OC=$j_old, MC=$j_meta" >&2
@@ -56,7 +62,13 @@ if type -p pmap >/dev/null 2>&1; then
     os_mem_present=1
 fi
 
-if [ $brief -eq 1 ]; then
+if [ $oneliner -eq 1 ]; then
+    if [ $os_mem_present -eq 1 ]; then
+        printf "JVM: %'.2f / %'.2f (%s%%), OS: %'.2f (RSS), %'.2f (Dirty)\n" $j_sum $j_sum_usage $j_sum_p $os_rss $os_dirty
+    else
+        printf "JVM: %'.2f / %'.2f (%s%%)\n" $j_sum $j_sum_usage $j_sum_p
+    fi
+elif [ $brief -eq 1 ]; then
     printf "JVM (%d) total memory usage by JVM (kB): %'.2f / %'.2f (%s%%)\n" $j_pid $j_sum $j_sum_usage $j_sum_p
     if [ $os_mem_present -eq 1 ]; then
         printf "JVM (%d) total memory usage by OS  (kB): %'.2f (RSS), %'.2f (Dirty)\n" $j_pid $os_rss $os_dirty
