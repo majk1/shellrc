@@ -55,6 +55,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.6**  
+   Moved to github  
+
  * **1.5.1**  
    Added oneliner `-1` argument for `jmeminfo`
   

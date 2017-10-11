@@ -127,25 +127,25 @@ link-rc-scripts() {
 }
 
 update-shellrc() {
-    VERSIONS="$(wget --no-cache -q -O- 'https://bitbucket.org/mn3monic/scripts/downloads?tab=tags' | grep "/mn3monic/scripts/get/.*\.tar\.gz" | sed '/\/mn3monic\/scripts\/get\/.*\.tar\.gz/s/.*href="\/mn3monic\/scripts\/get\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
     LATEST="$(echo "$VERSIONS" | head -n 1)"
     if [ "$LATEST" != "$SHELLRC_VERSION" ]; then
-        echo -n "Upgrade mn3monic-scripts to version ${LATEST} [y/n]? "
+        echo -n "Upgrade shellrc-scripts to version ${LATEST} [y/n]? "
         read ANSWER
 		if [ "$ANSWER" != "y" ]; then
 			echo "Stopping upgrade. Bye"
 		else
-            wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+            wget --no-cache -q -O- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
         fi
     else
         if [ ! -z "$1" ]; then
             if [ "$1" == "--force" ]; then
-                echo -n "Reinstall mn3monic-scripts version ${LATEST} [y/n]? "
+                echo -n "Reinstall shellrc-scripts version ${LATEST} [y/n]? "
                 read ANSWER
                 if [ "$ANSWER" != "y" ]; then
                     echo "Stopping reinstall. Bye"
                 else
-                    wget --no-cache -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+                    wget --no-cache -q -O- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
                 fi
             fi
         else
