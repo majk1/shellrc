@@ -1,19 +1,15 @@
-# Shell script collection
-
-Useful scripts for unix like systems.
-
 ## Usage
 
 ### Install script
 
 with wget:
 ```
-wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+wget -q -O- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
 ```
 
 with curl:
 ```
-curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+curl -L -s -o- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
 ```
 
 for silent install use -su parameter instad of -u
@@ -29,12 +25,12 @@ update-shellrc
 
 with wget:
 ```
-wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a
+wget -q -O- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -a
 ```
 
 with curl:
 ```
-curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a
+curl -L -s -o- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -a
 ```
 
 ### Using git repo
@@ -44,7 +40,7 @@ curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" |
   
 ```
 cd ~
-git clone https://bitbucket.org/mn3monic/scripts.git
+git clone https://github.com/majk1/shellrc.git
 ```
 
 #### source shellrc.sh  
@@ -54,6 +50,9 @@ source ~/scripts/shellrc.sh
 ```
 
 ## Changelog
+
+ * **1.6**  
+   Moved to github
 
  * **1.5.1**  
    Added oneliner `-1` argument for `jmeminfo`
