@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 #
-# Java process memory info
-# source: https://bitbucket.org/mn3monic/scripts
+# === Java process memory info ===
 #
+# MIT License
+# Copyright (c) 2016 Attila Majoros
+#
+# Source: https://github.com/majk1/shellrc/blob/master/utils/jmemstat.sh
+#
+# Examples:
+# 
 # list all: while read jpid jclass; do printf "%5s %20s - %s\n" $jpid $jclass "$(./jmemstat.sh -1 $jpid)"; done < <(jps | grep -v '\ Jps$')
 # 
+#
+#
 
 unset j_pid
 oneliner=0

@@ -1,6 +1,6 @@
 # Shell script collection
 
-Useful scripts for unix like systems.
+Useful scripts for unix like systems mostly for developers
 
 ## Usage
 
@@ -8,12 +8,12 @@ Useful scripts for unix like systems.
 
 with wget:
 ```
-wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+wget -q -O- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
 ```
 
 with curl:
 ```
-curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -u
+curl -L -s -o- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
 ```
 
 for silent install use -su parameter instad of -u
@@ -29,12 +29,12 @@ update-shellrc
 
 with wget:
 ```
-wget -q -O- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a
+wget -q -O- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -a
 ```
 
 with curl:
 ```
-curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" | bash -s -- -a
+curl -L -s -o- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -a
 ```
 
 ### Using git repo
@@ -43,8 +43,7 @@ curl -L -s -o- "https://bitbucket.org/mn3monic/scripts/downloads/installer.sh" |
 #### clone repository:
   
 ```
-cd ~
-git clone https://bitbucket.org/mn3monic/scripts.git
+git clone https://github.com/majk1/shellrc.git
 ```
 
 #### source shellrc.sh  
