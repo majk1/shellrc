@@ -71,28 +71,28 @@ mcd() {
 	mkdir -p "$1" && cd "$1";
 }
 md5() {
-	echo -n $1 | openssl md5 /dev/stdin
+	echo -n "$1" | openssl md5 /dev/stdin
 }
 sha1() {
-	echo -n $1 | openssl sha1 /dev/stdin
+	echo -n "$1" | openssl sha1 /dev/stdin
 }
 sha256() {
-	echo -n $1 | openssl dgst -sha256 /dev/stdin
+	echo -n "$1" | openssl dgst -sha256 /dev/stdin
 }
 sha512() {
-	echo -n $1 | openssl dgst -sha512 /dev/stdin
+	echo -n "$1" | openssl dgst -sha512 /dev/stdin
 }
 rot13() {
-	echo $1 | tr "A-Za-z" "N-ZA-Mn-za-m"
+	echo "$1" | tr "A-Za-z" "N-ZA-Mn-za-m"
 }
 rot47() {
-	echo $1 | tr "\!-~" "P-~\!-O"
+	echo "$1" | tr "\!-~" "P-~\!-O"
 }
 urlencode() {
-	python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])" $1
+	python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])" "$1"
 }
 urldecode() {
-	python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])" $1
+	python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])" "$1"
 }
 
 weather() {
