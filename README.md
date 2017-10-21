@@ -54,6 +54,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.6.1**  
+   Added mvnCleaner
+
  * **1.6**  
    Moved to github  
 
