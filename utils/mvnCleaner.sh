@@ -56,7 +56,7 @@ fi
 cd "$scandir"
 CURDIR="$(pwd)"
 
-echo "Scandir is \"$CURDIR\""
+echo -e "\nScandir is \"$CURDIR\"\n"
 
 if [ -t 1 ]; then
     COL_DEF="$(tput sgr0)"
@@ -76,6 +76,10 @@ total_size=0
 cleanable_size=0
 cleaned_size=0
 
+total_count=0
+cleanable_count=0
+cleaned_count=0
+
 for pom in $(find . -type f -name pom.xml); do
 
     basedir="${pom%/*}"
@@ -85,26 +89,30 @@ for pom in $(find . -type f -name pom.xml); do
     no_auto_clean=0
     
     col=""
-    usg="(           )"
+    usg="(             )"
+    
+    ((total_count++))
     
     if [ -d "$basedir/target" ]; then
         has_target=1
         col="$COL_RED"
         usg_size_k="$(du -sk "$absdir/target" | awk '{print $1}')"
-        usg="$(printf "(%8s kB)" "$usg_size_k")"
+        usg="$(printf "(%'10d kB)" "$usg_size_k")"
         
         ((total_size+=usg_size_k))
-      
+        
         if [ -f "$basedir/.noautoclean" ]; then
             no_auto_clean=1
             col="$COL_GRAY"
         else
             ((cleanable_size+=usg_size_k))
+            ((cleanable_count++))
             if [ $clean -eq 1 ]; then
                 rm -rf "$basedir/target" >/dev/null 2>&1
                 if [ $? -eq 0 ]; then
                     col="$COL_GREEN"
                     ((cleaned_size+=usg_size_k))
+                    ((cleaned_count++))
                 else
                     col="$COL_YELLOW"
                 fi
@@ -117,6 +125,8 @@ for pom in $(find . -type f -name pom.xml); do
     fi
 done
 
-printf "Cleanable size: %'8d kB\n" "$cleanable_size"
-printf "  Cleaned size: %'8d kB\n" "$cleaned_size"
-printf "    Total size: %'8d kB\n" "$total_size"
+echo -e "\n           count / size"
+printf "Cleanable: %d / %'d kB\n" "$cleanable_count" "$cleanable_size"
+printf "  Cleaned: %d / %'d kB\n" "$cleaned_count" "$cleaned_size"
+printf "    Total: %d / %'d kB\n" "$total_count" "$total_size"
+echo
