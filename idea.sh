@@ -40,17 +40,3 @@ getProjectNameInDir () {
     fi
     return 1
 }
-
-if [ "$(uname)" = "Darwin" ]; then
-	IDEA_CMD="/Applications/IntelliJ IDEA.app/Contents/MacOS/idea"
-
-   idea() {
-       open -b com.jetbrains.intellij $@
-   }
-
-	ideaDiff() {
-		$IDEA_CMD diff "$1" "$2"
-	}
-
-fi
-

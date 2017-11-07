@@ -28,4 +28,17 @@ jvisualvm-jboss() {
     fi
 }
 
+wildfly-pid() {
+	NODENAME="$1"
+	if [ -z "$NODENAME" ]; then
+		ps a | sed -n "/java.*-D\[[S]erver:/s/\([0-9{2,}]\)\ .*Server:\([^]]*\)\].*/\1 \2/p"
+	elif [ "$NODENAME" == "-h" ]; then
+		echo -e "Usage: wildfly-pid [jboss.node.name]\n" >&2
+		echo "if node name is not defined, then every wildfly node will be listed in format:" >&2
+		echo -e "<pid> <node name>\n" >&2
+	else
+		ps a | sed -n "/java.*-D\[[S]erver:/s/\([0-9{2,}]\)\ .*Server:${1}\].*/\1/p"
+	fi
+}
+
 alias jmemstat="${SCRIPT_BASE_DIR}/utils/jmemstat.sh"

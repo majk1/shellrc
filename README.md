@@ -54,6 +54,10 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.6.3**  
+   `idea` command removed (can be created in IntelliJIDEA *menu -> Tools -> Create Command-line Launcher*)  
+   `wildfly-pid` function added to *java.sh*  
+
  * **1.6.2**  
    mvnCleaner - count + fixes
 
