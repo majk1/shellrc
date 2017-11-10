@@ -40,3 +40,9 @@ getProjectNameInDir () {
     fi
     return 1
 }
+
+if [ "$(uname)" = "Darwin" ]; then		
+    idea_open() {
+        open -b com.jetbrains.intellij "$@"		
+    }	
+fi
