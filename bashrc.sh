@@ -12,6 +12,10 @@ shopt -s checkwinsize
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /opt/local/etc/bash_completion ] && . /opt/local/etc/bash_completion
 
+for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
+    . ${compfile}
+done
+
 # setting the prompt
 
 [ -z "$PROMPT_DIRECTORY" ] && PROMPT_DIRECTORY='\w'

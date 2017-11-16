@@ -19,6 +19,11 @@ zstyle :compinstall filename "~/.zshrc"
 autoload -Uz compinit && compinit
 autoload -U promptinit && promptinit
 autoload -U colors && colors
+autoload bashcompinit && bashcompinit
+
+for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
+    . ${compfile}
+done
 
 HISTFILE=~/.histfile
 HISTSIZE=1000
