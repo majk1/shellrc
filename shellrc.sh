@@ -40,7 +40,7 @@ if [ "$(uname)" = "Linux" ]; then
     source ${SCRIPT_BASE_DIR}/linux.sh
 fi
 
-# Linux specific
+# Cygwin specific
 if echo "$(uname)" | grep -q -i 'cygwin'; then
     source ${SCRIPT_BASE_DIR}/cygwin.sh
 fi
