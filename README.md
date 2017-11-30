@@ -54,6 +54,10 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.7.1**  
+   `grephash` and `grephashempty` alias fix  
+   
+   
  * **1.7**  
    `wildfly-pid` "ps a" replaced to "ps ax"  
    added conditional `colorcat` alias (if source-highlight command present)   
