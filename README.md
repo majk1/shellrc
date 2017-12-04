@@ -56,8 +56,11 @@ source ~/scripts/shellrc.sh
 
  * **1.7.1**  
    `grephash` and `grephashempty` alias fix  
-   
-   
+   custom bash-completion removed in cygwin  
+   added `millis`() function to get current time in milliseconds  
+   added `nanos`() function to get current time in nanoseconds  
+   added `backup`() function to create a backup of a file in format: {original_file_name.original_file_ext.bck-YYYYMMDDHHmmss}  
+
  * **1.7**  
    `wildfly-pid` "ps a" replaced to "ps ax"  
    added conditional `colorcat` alias (if source-highlight command present)   

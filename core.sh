@@ -95,6 +95,13 @@ urldecode() {
 	python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])" "$1"
 }
 
+millis() {
+    python -c "import time; print(int(time.time()*1000))"
+}
+nanos() {
+    python -c "import time; print(int(time.time()*1000000000))"
+}
+
 weather() {
 	wget -q -O- http://wttr.in/Budapest
 }
@@ -113,6 +120,10 @@ findDir() {
 
 withoutExt() {
 	echo "${1%.*}"
+}
+
+backup() {
+    cp "${1}" "${1}.bck-$(date '+%Y%m%d%H%M%S')"
 }
 
 link-rc-scripts() {
