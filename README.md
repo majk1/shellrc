@@ -55,6 +55,7 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
  * **1.7.1**  
+   `wildfly-pid` fixed + also prints standalone  
    `grephash` and `grephashempty` alias fix  
    custom bash-completion removed in cygwin  
    added `millis`() function to get current time in milliseconds  
