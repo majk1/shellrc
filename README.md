@@ -14,6 +14,13 @@ curl -L -s -o- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -u
 
 for silent install use -su parameter instad of -u
 
+### link rc files
+
+just type:
+```
+link-rc-scripts
+```
+
 ### Upgrade / reinstall
 
 just type:
