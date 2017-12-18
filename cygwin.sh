@@ -1,6 +1,7 @@
 
 alias ls='ls --color'
 alias fixcrlf='sed -i "s/^M$//"'
+alias netsh-portproxy='netsh interface portproxy'
 
 MAIN_GROUP=$(groups $USER | sed "s/$USER : \([^ ]\+\).*/\1/")
 export MAIN_GROUP
