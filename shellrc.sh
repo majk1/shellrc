@@ -4,7 +4,7 @@
 #
 
 [ -z "$PS1" ] && return
-[ -f ${HOME}/.profile ] && . ${HOME}/.profile
+#[ -f ${HOME}/.profile ] && . ${HOME}/.profile
 
 # script base
 if [ ! -z "${BASH_VERSION}" ]; then
