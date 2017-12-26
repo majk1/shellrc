@@ -41,7 +41,7 @@ curl -L -s -o- "https://majk1.github.io/shellrc/installer.sh" | bash -s -- -a
 
 
 #### clone repository:
-  
+
 ```
 git clone https://github.com/majk1/shellrc.git
 ```
@@ -53,6 +53,9 @@ source ~/scripts/shellrc.sh
 ```
 
 ## Changelog
+
+ * **1.7.2**  
+   commented out the line to source .profile in shellrc, causing an infinite loop
 
  * **1.7.1**  
    `wildfly-pid` fixed + also prints standalone  
@@ -83,7 +86,7 @@ source ~/scripts/shellrc.sh
 
  * **1.5.1**  
    Added oneliner `-1` argument for `jmeminfo`
-  
+
  * **1.5**  
    Added `jmeminfo` utility script to get the jvm memory usage
 
