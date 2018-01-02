@@ -126,6 +126,75 @@ backup() {
     cp "${1}" "${1}.bck-$(date '+%Y%m%d%H%M%S')"
 }
 
+# [-d days|-b rsa-bits] <path-base (will be appended by .key and .crt)>
+create-openssl-key-and-cert() {
+    if [ $# -lt 1 ]; then
+        echo "Usage: create-openssl-key-and-cert [-d days|-b rsa-bits] <path-base (will be appended by .key and .crt)>"
+        return 1
+    fi
+    days=365; bits=2048; pathbase=""
+    while [ ! -z "$1" ]; do
+        param="$1"; shift
+        case "${param}" in
+            -d)
+                if [ -z "$1" ]; then echo "parameter -d (days) requires a value" >&2; return 2; fi
+                days=$1; shift
+                ;;
+            -b)
+                if [ -z "$1" ]; then echo "parameter -b (rsa bits) requires a value" >&2; return 2; fi
+                bits=$1; shift
+                ;;
+            *)
+                pathbase="${param}"
+                ;;
+        esac
+    done
+    if [ -z "$pathbase" ]; then echo "base path required" >&2; return 3; fi
+
+    openssl req -x509 -nodes -days $days -newkey rsa:$bits -keyout "${pathbase}.key" -out "${pathbase}.crt"
+
+    echo ""
+    echo "nginx config example: "
+    echo -e "\tssl_certificate           ${pathbase}.crt;"
+    echo -e "\tssl_certificate_key       ${pathbase}.key;"
+    echo -e "\tssl_dhparam               /etc/ssl/certs/dhparam.pem;"
+    echo -e "\t"
+    echo -e "\tssl on;"
+    echo -e "\tssl_session_cache  builtin:1000  shared:SSL:10m;"
+    echo -e "\tssl_protocols  TLSv1 TLSv1.1 TLSv1.2;"
+    echo -e "\tssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;"
+    echo -e "\tssl_prefer_server_ciphers on;"
+    echo ""
+}
+
+create-openssl-dh() {
+    if [ $# -lt 1 ]; then
+        echo "Usage: create-openssl-dh [-b bits] <path (ex: dh2048.pem)>"
+        return 1
+    fi
+    bits=2048; pathbase=""
+    while [ ! -z "$1" ]; do
+        param="$1"; shift
+        case "${param}" in
+            -b)
+                if [ -z "$1" ]; then echo "parameter -b (rsa bits) requires a value" >&2; return 2; fi
+                bits=$1; shift
+                ;;
+            *)
+                pathbase="${param}"
+                ;;
+        esac
+    done
+    if [ -z "$pathbase" ]; then echo "path required" >&2; return 3; fi
+
+    openssl dhparam -out "${pathbase}" $bits
+
+    echo ""
+    echo "nginx config example: "
+    echo -e "\tssl_dhparam\t\t\t${pathbase};"
+    echo ""
+}
+
 link-rc-scripts() {
     for RC in ${SCRIPT_BASE_DIR}/rc/*rc; do
         HOMERCNAME="${HOME}/.$(basename ${RC})"

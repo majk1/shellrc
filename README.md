@@ -54,6 +54,23 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.7.3**  
+   `gifenc` and `to-stereo.sh` drafts  
+   `netsh interface portproxy` alias `netsh-portproxy` on cygwin  
+   `shellrc.sh` - force en_US.UTF-8 - LANG and LC_ALL env vars  
+
+   - **core**:  
+     `create-openssl-key-and-cert` function added to core.sh (run without params for usage)  
+     `create-openssl-dh` function added to core.sh (run without params for usage)  
+
+   - **darwin**:  
+     `dns-flush-cache` function added to flush dns cache  
+     `appBundleId` function has been renamed to `app-bundle-id`  
+
+   - **docker**:  
+     `docker-registry-mark-for-delete` function added  
+
+
  * **1.7.2**  
    commented out the line to source .profile in shellrc, causing an infinite loop
 

@@ -56,3 +56,7 @@ alias imgls="${SCRIPT_BASE_DIR}/utils/imgls.sh"
 if [ -x ~/bin/status.sh ]; then
 	bash ~/bin/status.sh
 fi
+
+# force en_US and utf-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

@@ -58,7 +58,7 @@ selected() {
 EOT
 }
 
-appBundleId() {
+app-bundle-id() {
 	osascript -e '
 	on run args
 		set output to {}
@@ -68,4 +68,9 @@ appBundleId() {
 		set text item delimiters to linefeed
 		output as text
 	end run' "$@"
+}
+
+dns-flush-cache() {
+	# sierra+ version
+	sudo killall -HUP mDNSResponder; sudo killall -9 mDNSResponderHelper; sudo dscacheutil -flushcache
 }
