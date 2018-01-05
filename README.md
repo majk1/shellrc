@@ -54,6 +54,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.7.4**  
+   added and linked ipv6-utils.sh with functions: `ipv6_mac_to_ipv6` and `ipv6_ipv6_to_mac`
+
  * **1.7.3**  
    `gifenc` and `to-stereo.sh` drafts  
    `netsh interface portproxy` alias `netsh-portproxy` on cygwin  
