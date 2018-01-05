@@ -195,6 +195,14 @@ create-openssl-dh() {
     echo ""
 }
 
+set-session-title() {
+    export SESSION_TITLE="$@"
+}
+
+unset-session-title() {
+    export SESSION_TITLE=""
+}
+
 link-rc-scripts() {
     for RC in ${SCRIPT_BASE_DIR}/rc/*rc; do
         HOMERCNAME="${HOME}/.$(basename ${RC})"
