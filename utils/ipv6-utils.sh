@@ -32,7 +32,7 @@ print mac_to_ipv6(sys.argv[1])
 EOF_PYTHON
 }
 
-
+# $1 ipv6 address
 function ipv6_ipv6_to_mac() {
     if ! type -p python >/dev/null 2>/dev/null; then
         echo "Could not run funcion, python not found :(" >&2

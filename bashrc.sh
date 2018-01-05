@@ -16,7 +16,7 @@ shopt -s checkwinsize
 if ! echo "$(uname)" | grep -q -i 'cygwin'; then
     for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
         . ${compfile}
-    done    
+    done
 fi
 
 # setting the prompt
@@ -34,8 +34,13 @@ function custom_prompt_command() {
 	if [ $? -eq 0 ]; then
 		update_terminal_cwd
 	fi
-	echo -ne "\033]0;${USER}@${HOSTNAME} - ${PWD/#$HOME/\~} \007"
+    if [ ! -z "${SESSION_TITLE}" ]; then
+        echo -ne "\033]0;${SESSION_TITLE} - ${USER}@${HOSTNAME} - ${PWD/#$HOME/\~} \007"
+    else
+	    echo -ne "\033]0;${USER}@${HOSTNAME} - ${PWD/#$HOME/\~} \007"
+    fi
 }
+
 PROMPT_COMMAND=custom_prompt_command
 
 shortPrompt() {

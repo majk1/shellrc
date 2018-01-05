@@ -72,7 +72,11 @@ else
 fi
 
 precmd() {
-	print -Pn "\e]0;%n@%m: %~\a"
+    if [ ! -z "$SESSION_TITLE" ]; then
+        print -Pn "\e]0;${SESSION_TITLE} - %n@%m: %~\a"
+    else
+        print -Pn "\e]0;%n@%m: %~\a"
+    fi
 }
 
 [ -z $MC_SID ] && RPROMPT="$(print '%{\e[2;38m%}%y | %T%{\e[0m%}')"
