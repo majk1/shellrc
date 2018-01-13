@@ -10,9 +10,12 @@ docker-remove-abandoned-images() {
 	docker rmi $(docker images | grep '^<none>' | awk '{print $3}')
 }
 
-docker-qcow2-usage() {
-	find ~/Library/Containers/com.docker.docker/Data -type f -iname '*.qcow2' -exec du -sh {} \;
-}
+if [ "$(uname)" = "Darwin" ]; then
+	docker-storage-usage() {
+		find ~/Library/Containers/com.docker.docker/Data -type f -iname '*.qcow2' -exec du -sh {} \;
+		find ~/Library/Containers/com.docker.docker/Data -type f -iname 'Docker.raw' -exec du -sh {} \;
+	}
+fi
 
 # $1 - registry url
 # $2 - iamge name

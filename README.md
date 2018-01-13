@@ -54,6 +54,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+ * **1.7.5**  
+   `docker-storage-usage` function for mac os docker replaces `docker-qcow2-usage`  
+
  * **1.7.4**  
    added and linked ipv6-utils.sh with functions: `ipv6_mac_to_ipv6` and `ipv6_ipv6_to_mac`  
    `set-session-title` and `unset-session-titel` functions to set/unset `SESSION_TITLE` env var - prefix for terminal title  
