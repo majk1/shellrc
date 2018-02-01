@@ -195,6 +195,43 @@ create-openssl-dh() {
     echo ""
 }
 
+run-in() {
+    if [ "_$1" == "_-v" ]; then
+        verbose=1
+        shift
+    else
+        verbose=0
+    fi
+
+    target_dir="$1"
+    shift
+    run_command="$@"
+    
+    if [ -z "$run_command" ]; then
+        echo "Run command has to be specified" >&2
+        return 2
+    fi
+    if [ ! -d "$target_dir" ]; then
+        echo "Target dir \"${target_dir}\" doestn't exists" >&2
+        return 1
+    fi
+    
+    curdir="$(pwd)"
+    
+    for run_in_dir in $(find "$target_dir" -type d -maxdepth 1 -not -name '.*'); do
+        cd "$run_in_dir"
+        if [ $? -ne 0 ]; then
+            cd "$curdir"
+            echo "Could not enter directory \"${run_in_dir}\"" >&2
+            return 1
+        else
+            [ ${verbose} -eq 1 ] && echo "Running in \"${run_in_dir}\"... "
+            eval ${run_command}
+        fi
+        cd "$curdir"
+    done
+}
+
 set-session-title() {
     export SESSION_TITLE="$@"
 }
