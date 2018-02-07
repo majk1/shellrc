@@ -34,3 +34,7 @@ docker-registry-mark-for-delete() {
 		echo "Run in docker: bin/registry garbage-collect /etc/docker/registry/config.yml"
 	fi
 }
+
+docker-stats() {
+    docker stats --format="table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}" "$@"
+}
