@@ -40,6 +40,10 @@ fi
 
 # functions
 
+dus() {
+    du -sh "$@" | sort -h
+}
+
 sortedless() {
 	sort "$1" | less
 }
