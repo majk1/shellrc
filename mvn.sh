@@ -3,13 +3,14 @@
 
 export MAVEN_OPTS="$JAVA_OPTS -noverify -Xmx2048m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
-alias mvnAllNoTest='mvn clean install -DskipTests'
-alias mvnAllNoIT='mvn clean install -DskipITs'
-alias mvnAllNoTestNoIT='mvn clean install -DskipTests -DskitITs -Dmaven.test.skip=true'
-alias mvnAll='mvn clean install'
-alias mvnRemoteDebug='MAVEN_OPTS="$MAVEN_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Xnoagent -Djava.compiler=NONE" mvn'
+alias mvn-all-no-test='mvn clean install -DskipTests'
+alias mvn-all-no-it='mvn clean install -DskipITs'
+alias mvn-all-no-test-no-it='mvn clean install -DskipTests -DskitITs -Dmaven.test.skip=true'
+alias mvn-all='mvn clean install'
+alias mvn-remote-debug='MAVEN_OPTS="$MAVEN_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Xnoagent -Djava.compiler=NONE" mvn'
 
-alias mvnCleaner="${SCRIPT_BASE_DIR}/utils/mvnCleaner.sh"
+alias mvn-cleaner="${SCRIPT_BASE_DIR}/utils/mvn-cleaner.sh"
+alias mvn-search="${SCRIPT_BASE_DIR}/utils/mvn-search.sh"
 
 # functions
 

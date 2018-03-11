@@ -5,7 +5,7 @@
 # MIT License
 # Copyright (c) 2017 Attila Majoros
 #
-# Source: https://github.com/majk1/shellrc/blob/master/utils/mvnCleaner.sh
+# Source: https://github.com/majk1/shellrc/blob/master/utils/mvn-cleaner.sh
 #
 
 showall=0
@@ -14,7 +14,7 @@ scandir=.
 
 function usage() {
     echo
-    echo "Usage: mvnCleaner [options] [scan directory]"
+    echo "Usage: mvn-cleaner [options] [scan directory]"
     echo
     echo " -h|--help      - this help"
     echo " -a|--all       - show all maven projects (even without target dir)"
