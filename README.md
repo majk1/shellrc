@@ -60,6 +60,8 @@ source ~/scripts/shellrc.sh
 
 - **1.7.5**  
   added `dus` function into core.sh (sorted du: *du -sh "$@" | sort -h*)  
+  added `hr` function into core.sh (prints a horizontal separator line)  
+  added `currency-exchange` util script  
 
 - **1.7.4**  
   added `pip` command bash completion  

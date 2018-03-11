@@ -52,6 +52,7 @@ fi
 . "${SCRIPT_BASE_DIR}/utils/ipv6-utils.sh"
 alias imgcat="${SCRIPT_BASE_DIR}/utils/imgcat.sh"
 alias imgls="${SCRIPT_BASE_DIR}/utils/imgls.sh"
+alias currency-exchange="${SCRIPT_BASE_DIR}/utils/currency-exchange.sh"
 
 # show status if exists
 if [ -x ~/bin/status.sh ]; then

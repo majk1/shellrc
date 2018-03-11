@@ -40,6 +40,14 @@ fi
 
 # functions
 
+hr() {
+    cols=$(($(tput cols)-1))
+    for ((i=0; i<$cols; i++)) {
+        echo -n "―"
+    }
+    echo
+}
+
 dus() {
     du -sh "$@" | sort -h
 }
