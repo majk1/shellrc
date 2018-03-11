@@ -60,6 +60,7 @@ source ~/scripts/shellrc.sh
 
 - **1.7.6**  
   added `mvn-search` util script  
+  renamed mvnCleaner to mvn-cleaner  
 
 - **1.7.5**  
   added `dus` function into core.sh (sorted du: *du -sh "$@" | sort -h*)  
