@@ -53,6 +53,7 @@ fi
 alias imgcat="${SCRIPT_BASE_DIR}/utils/imgcat.sh"
 alias imgls="${SCRIPT_BASE_DIR}/utils/imgls.sh"
 alias currency-exchange="${SCRIPT_BASE_DIR}/utils/currency-exchange.sh"
+alias mvn-search="${SCRIPT_BASE_DIR}/utils/mvn-search.sh"
 
 # show status if exists
 if [ -x ~/bin/status.sh ]; then
