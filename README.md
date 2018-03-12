@@ -58,6 +58,10 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.7**
+  command `mvn-search version` now supports combined parameter by version request and
+  for also for flags, like: `mvn-search -1 v org.projectlombok:lombok` or `mvn-search -n1 s lombok`  
+
 - **1.7.6**  
   added `mvn-search` util script  
   renamed mvnCleaner to mvn-cleaner  
