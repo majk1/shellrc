@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 
 getLatestVersion() {
-    VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    if type -p curl 2>&1 >/dev/null; then
+        VERSIONS="$(curl -L -s -o- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    elif type -p wget 2>&1 >/dev/null; then
+        VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    else
+        echo "Could not query latest version, curl or wget cannot be found :(" >&2
+        return 1
+    fi
     local LATEST="$(echo "$VERSIONS" | head -n 1)"
     echo "${LATEST}"
 }
 
 LATEST_VERSION="$(getLatestVersion)"
+RET=$?
+if [ $RET -ne 0 ]; then
+    exit $RET
+fi
 
 getArchiveDirectoryName() {
     echo "shellrc-$(tar -tvzf "$1" | head -n 1 | sed 's/.*shellrc-\([^\/]*\)\/.*/\1/')"
