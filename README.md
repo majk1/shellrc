@@ -58,7 +58,11 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **1.7.7**
+- **1.7.8**  
+  added `unicode` command to (*download the list and*) search for unicode symbol by keywords given as argumemts:  
+  example: `unicode black circle`  
+
+- **1.7.7**  
   command `mvn-search version` now supports combined parameter by version request and
   for also for flags, like: `mvn-search -1 v org.projectlombok:lombok` or `mvn-search -n1 s lombok`  
 
