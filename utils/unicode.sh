@@ -41,5 +41,5 @@ while read line; do
     desc="${line#*;}"
     utf16="$(echo "$code" | sed 's/\(.\{2\}\)/\\x\1/g')"
     echo -n -e "$utf16" | iconv -f utf-16be
-    echo " - \\u${code} - ${desc}"
+    echo -e "\t\\u${code}\t&#x${code};\t${desc}"
 done < <(eval "${pattern}")
