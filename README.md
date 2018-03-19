@@ -59,7 +59,7 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **1.7.8**  
-  added `netinfo` command to query system network interface informations  
+  added `netinfo` (*macos only*) command to query system network interface informations  
   added `unicode` command to (*download the list and*) search for unicode symbol by keywords given as argumemts:  
   example: `unicode black circle`  
 

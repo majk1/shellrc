@@ -4,6 +4,7 @@
 alias df='df -Ph -T ufsd_NTFS,hfs,msdos,exfat,apfs'
 alias fixcrlf='sed -i "" "s/
 $//"'
+alias netinfo="${SCRIPT_BASE_DIR}/utils/netinfo.py"
 
 MAIN_GROUP=$(groups $USER | sed "s/\([^ ]\{1,\}\).*/\1/")
 export MAIN_GROUP
