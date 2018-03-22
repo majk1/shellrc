@@ -29,17 +29,18 @@ jvisualvm-jboss() {
 }
 
 wildfly-pid() {
-	NODENAME="$1"
-	if [ -z "$NODENAME" ]; then
-		ps ax | sed -n "/java.*-D\[[S]erver:/s/\([0-9{2,}]\)\ .*Server:\([^]]*\)\].*/\1 \2/p"
-		ps ax | sed -n "/java.*-D\[[S]tandalone/s/\([0-9{2,}]\)\ .*Standalone\].*/\1 Standalone/p"
-	elif [ "$NODENAME" == "-h" ]; then
-		echo -e "Usage: wildfly-pid [jboss.node.name]\n" >&2
-		echo "if node name is not defined, then every wildfly node will be listed in format:" >&2
-		echo -e "<pid> <node name>\n" >&2
+    NODENAME="$1"
+    if [ -z "$NODENAME" ]; then
+        ps ax | awk '/-D\[Server|-D\[Standalone/ {pid=$1; name=$6; if (index(name, "Standalone")) { name="Standalone" } else { split(name, arr, ":"); name=substr(arr[2], 0, length(arr[2])-1) }; print pid " " name}'
+    elif [ "$NODENAME" == "-h" ]; then
+        cat <<-EOF >&2
+		Usage: wildfly-pid [jboss.node.name]
+		if node name is not defined, then every wildfly node will be listed in format:
+		<pid> <node name>
+		EOF
 	else
-		ps ax | sed -n "/java.*-D\[[S]erver:/s/\([0-9{2,}]\)\ .*Server:${1}\].*/\1/p"
-	fi
+		ps ax | awk "/-D\[Server:${NODENAME}/ {pid=\$1; name=\$6; split(name, arr, \":\"); name=substr(arr[2], 0, length(arr[2])-1); print pid \" \" name}"
+	fi        
 }
 
 alias jmemstat="${SCRIPT_BASE_DIR}/utils/jmemstat.sh"
