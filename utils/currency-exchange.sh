@@ -134,12 +134,15 @@ if [ ! -z "$TAX" ]; then
     if [ $SILENT -eq 1 ]; then
         echo "$AMOUNT_WITH_TAX"
     else
+        AMOUNT_TO="$($SCRIPT_BASE_DIR/utils/format-number.sh "$AMOUNT_TO")"    
+        AMOUNT_WITH_TAX="$($SCRIPT_BASE_DIR/utils/format-number.sh "$AMOUNT_WITH_TAX")"    
         echo "$AMOUNT $CURR_FROM is $AMOUNT_TO $CURR_TO with tax ${TAX}% = $AMOUNT_WITH_TAX $CURR_TO"
     fi
 else
     if [ $SILENT -eq 1 ]; then
         echo "$AMOUNT_TO"
     else
+        AMOUNT_TO="$($SCRIPT_BASE_DIR/utils/format-number.sh "$AMOUNT_TO")"
         echo "$AMOUNT $CURR_FROM is $AMOUNT_TO $CURR_TO"
     fi
 fi

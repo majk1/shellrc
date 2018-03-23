@@ -52,6 +52,7 @@ fi
 . "${SCRIPT_BASE_DIR}/utils/ipv6-utils.sh"
 alias imgcat="${SCRIPT_BASE_DIR}/utils/imgcat.sh"
 alias imgls="${SCRIPT_BASE_DIR}/utils/imgls.sh"
+alias format-number="${SCRIPT_BASE_DIR}/utils/format-number.sh"
 alias currency-exchange="${SCRIPT_BASE_DIR}/utils/currency-exchange.sh"
 alias unicode="${SCRIPT_BASE_DIR}/utils/unicode.py"
 

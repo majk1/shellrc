@@ -60,6 +60,7 @@ source ~/scripts/shellrc.sh
 
 - **1.7.8**  
   function `wildfly-pid` has been optimized (implementation with awk)  
+  added `format-number` command to format numbers to humand readable form (and added into `currency-exchange`)  
   added `netinfo` (*macos only*) command to query system network interface informations  
   added `unicode` command to (*download the list and*) search for unicode symbol by keywords given as argumemts:  
   example: `unicode black circle`  
