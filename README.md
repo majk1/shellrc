@@ -59,6 +59,7 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **1.7.8**  
+  added `git-pull` function in git.sh  
   function `wildfly-pid` has been optimized (implementation with awk)  
   added `format-number` command to format numbers to humand readable form (and added into `currency-exchange`)  
   added `netinfo` (*macos only*) command to query system network interface informations  

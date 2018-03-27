@@ -40,6 +40,44 @@ fi
 
 # functions
 
+bullet() {
+    if [ -t 1 ]; then
+        case "$1" in
+            red)
+                echo -e -n "\033[1;31m"
+                ;;
+            green)
+                echo -e -n "\033[1;32m"
+                ;;
+            yellow)
+                echo -e -n "\033[1;33m"
+                ;;
+        esac
+        echo -e -n "●\033[0m "
+    else
+        echo -n "* "
+    fi
+}
+
+bullet_err() {
+    if [ -t 2 ]; then
+        case "$1" in
+            red)
+                echo -e -n "\033[1;31m"
+                ;;
+            green)
+                echo -e -n "\033[1;32m"
+                ;;
+            yellow)
+                echo -e -n "\033[1;33m"
+                ;;
+        esac
+        echo -e -n "●\033[0m "
+    else
+        echo -n "* "
+    fi
+}
+
 hr() {
     cols=$(($(tput cols)-1))
     for ((i=0; i<$cols; i++)) {

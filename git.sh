@@ -14,3 +14,74 @@ function _git_ps1() {
 		echo -ne ""
 	fi
 }
+
+function git-pull() {
+    depth=3
+    base_dir=()
+    dry=0
+    while [ ! -z "$1" ]; do
+        cmd="$1"; shift
+        case "$cmd" in
+            "-h"|"--help"|"-help")
+                echo "usage: git-pull [-h] [--dry] [-d depth] [directories]" >&2
+                echo "" >&2
+                echo " -h           - this help message" >&2
+                echo " -d depth     - defined the find depth in dirs (default: ${depth})" >&2
+                echo " --dry        - dry run without actual git pull commands" >&2
+                echo " directories  - you can specify multiple base directories to scan" >&2
+                echo "" >&2
+                echo "example: git-pull projects/work /git/others -d 5 ../private/projects/git-repos" >&2
+                echo "" >&2
+                return 127
+                ;;
+            "--dry")
+                dry=1
+                echo "== Running dry ==" >&2
+                ;;
+            "-d")
+                if [ -z "$1" ]; then
+                    echo "Argument -d (depth) requires parameter" >&2
+                    return 1
+                fi
+                if [[ $1 =~ ^-?[0-9]+$ ]]; then
+                    depth=$1
+                else
+                    echo "Argument -d (depth) requires valid integer (got: ${1})" >&2
+                    return 2
+                fi
+                shift
+                ;;
+            *)
+                base_dir+=("$cmd")
+                ;;
+        esac
+    done
+    
+    if [ "${#base_dir[@]}" -eq 0 ]; then
+        base_dir=("$(pwd)")
+    else
+        resolved_dirs=()
+        for target_dir in "${base_dir[@]}"; do
+            if [ -d "$target_dir" ]; then
+                resolved_dirs+=("$(cd "$target_dir" && pwd)")
+            else
+                echo "Not a valid directory: $target_dir" >&1
+                return 3
+            fi
+        done
+    fi
+    
+    for target_dir in "${resolved_dirs[@]}"; do
+        git_dirs=()
+        while IFS=  read -r -d $'\0'; do git_dirs+=("${REPLY%*/.git}"); done < <(find "$target_dir" -maxdepth ${depth} -type d -name '.git' -print0)
+        for git_dir in "${git_dirs[@]}"; do
+            bullet yellow; echo "pulling directory $git_dir"
+            if [ ${dry} -eq 0 ]; then
+                (cd "$git_dir" && git pull)
+            else
+                bullet; echo " \$(git pull)"
+            fi
+        done
+    done
+    
+}
