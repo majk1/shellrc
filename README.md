@@ -58,15 +58,14 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **1.7.8**  
+- **1.7.7**
+  alias `toUTF8` has been removed  
   added `git-pull` function in git.sh  
   function `wildfly-pid` has been optimized (implementation with awk)  
   added `format-number` command to format numbers to humand readable form (and added into `currency-exchange`)  
   added `netinfo` (*macos only*) command to query system network interface informations  
   added `unicode` command to (*download the list and*) search for unicode symbol by keywords given as argumemts:  
-  example: `unicode black circle`  
-
-- **1.7.7**  
+  ^- example: `unicode black circle`  
   command `mvn-search version` now supports combined parameter by version request and
   for also for flags, like: `mvn-search -1 v org.projectlombok:lombok` or `mvn-search -n1 s lombok`  
 

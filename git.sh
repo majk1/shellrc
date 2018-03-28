@@ -101,7 +101,7 @@ function git-pull() {
     if [ "${#git_failures[@]}" -gt 0 ]; then
         bullet red; echo "The following git repos could not be pulled:"
         for git_fail_dir in "${git_failures[@]}"; do
-            echo " - ${git_fail_dir}"        
+            echo "  - ${git_fail_dir}"        
         done
     else
         bullet green; echo "All OK"
