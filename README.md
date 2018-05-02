@@ -58,6 +58,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.8**
+  fixed java_home for 9 and 10, default java is not java 10  
+
 - **1.7.7**
   alias `toUTF8` has been removed  
   added `git-pull` function in git.sh  
