@@ -58,15 +58,15 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **1.7.9**
-  added `dupli.py` as alias for `dupli`  
+- **1.7.9**  
+  added `dupli.py` as alias for `dupli` (script to find and list duplicate files)  
   added `to_stereo.sh` alternative ffmpeg parameteres (*still in comment, not a real util*)  
   added *backward-kill-word* as **ctrl+e**  
 
-- **1.7.8**
+- **1.7.8**  
   fixed java_home for 9 and 10, default java is now java 10  
 
-- **1.7.7**
+- **1.7.7**  
   alias `toUTF8` has been removed  
   added `git-pull` function in git.sh  
   function `wildfly-pid` has been optimized (implementation with awk)  
