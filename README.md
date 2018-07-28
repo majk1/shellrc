@@ -58,8 +58,13 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.9**
+  added `dupli.py` as alias for `dupli`  
+  added `to_stereo.sh` alternative ffmpeg parameteres (*still in comment, not a real util*)  
+  added *backward-kill-word* as **ctrl+e**  
+
 - **1.7.8**
-  fixed java_home for 9 and 10, default java is not java 10  
+  fixed java_home for 9 and 10, default java is now java 10  
 
 - **1.7.7**
   alias `toUTF8` has been removed  

@@ -50,3 +50,6 @@ shortPrompt() {
 longPrompt() {
     PROMPT_DIRECTORY='\w'
 }
+
+bind '"\C-e": backward-kill-word'
+

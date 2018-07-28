@@ -55,6 +55,7 @@ alias imgls="${SCRIPT_BASE_DIR}/utils/imgls.sh"
 alias format-number="${SCRIPT_BASE_DIR}/utils/format-number.sh"
 alias currency-exchange="${SCRIPT_BASE_DIR}/utils/currency-exchange.sh"
 alias unicode="${SCRIPT_BASE_DIR}/utils/unicode.py"
+alias dupli="${SCRIPT_BASE_DIR}/utils/dupli.py"
 
 # show status if exists
 if [ -x ~/bin/status.sh ]; then
