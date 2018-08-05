@@ -58,6 +58,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.10**  
+  added `mvn_gen_pom` function to generate maven pom.xml template  
+  
 - **1.7.9**  
   added `dupli.py` as alias for `dupli` (script to find and list duplicate files)  
   added `to_stereo.sh` alternative ffmpeg parameteres (*still in comment, not a real util*)  

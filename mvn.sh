@@ -39,3 +39,46 @@ mvn_get_plugin_goals() {
 
     echo "$description" | sed -n "/^${prefix}:/s/^${prefix}:\(.*\)/\1/p"
 }
+
+# mvn_gen_pom [-t <template>] [groupId] [artifactId] [version]
+# mvn_gen_pom [-t <template>] [groupId:artifactId] [version]
+# mvn_gen_pom [-t <template>] [groupId] [artifactId:version]
+# mvn_gen_pom [-t <template>] [groupId:artifactId:version]
+mvn_gen_pom() {
+    template="default"
+    
+    gav=()
+    while [ ! -z "$1" ]; do
+        if [ "$1" == "-t" ]; then
+            shift
+            if [ ! -z "$1" ]; then
+                template=$1
+                shift
+            else
+                echo "argument -t need a parameter" >&2
+                return 1
+            fi
+        fi
+        with_colon="$1"
+        while [[ "$with_colon" =~ : ]]; do
+            first_part="${with_colon%%:*}"
+            gav+=("$first_part")
+            with_colon="${with_colon#*:}"
+        done
+        gav+=("$with_colon")
+        shift
+    done
+    
+    params=()
+    if [ ! -z "${gav[0]}" ]; then
+        params+=("-e" "s/{var:groupId}/${gav[0]}/")
+    fi
+    if [ ! -z "${gav[1]}" ]; then
+        params+=("-e" "s/{var:artifactId}/${gav[1]}/")
+    fi
+    if [ ! -z "${gav[2]}" ]; then
+        params+=("-e" "s/{var:version}/${gav[2]}/")
+    fi
+    
+    sed ${params[@]} "${HOME}/.m2/templates/${template}"
+}
