@@ -58,6 +58,31 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.10**  
+  fixed `currency-exchange` source URL changed to HTTPS only  
+  added `ffmpeg-to-stereo` function to generate dolby stereo video files from 5.1 or 7.1 channel,
+  producing higher volume during speak and lower volume during action and music  
+  added `mvn_gen_pom` function to generate maven pom.xml template
+
+- **1.7.9**  
+  added `dupli.py` as alias for `dupli` (script to find and list duplicate files)  
+  added `to_stereo.sh` alternative ffmpeg parameteres (*still in comment, not a real util*)  
+  added *backward-kill-word* as **ctrl+e**  
+
+- **1.7.8**  
+  fixed java_home for 9 and 10, default java is now java 10  
+
+- **1.7.7**  
+  alias `toUTF8` has been removed  
+  added `git-pull` function in git.sh  
+  function `wildfly-pid` has been optimized (implementation with awk)  
+  added `format-number` command to format numbers to humand readable form (and added into `currency-exchange`)  
+  added `netinfo` (*macos only*) command to query system network interface informations  
+  added `unicode` command to (*download the list and*) search for unicode symbol by keywords given as argumemts:  
+  ^- example: `unicode black circle`  
+  command `mvn-search version` now supports combined parameter by version request and
+  for also for flags, like: `mvn-search -1 v org.projectlombok:lombok` or `mvn-search -n1 s lombok`  
+
 - **1.7.6**  
   added `mvn-search` util script  
   renamed mvnCleaner to mvn-cleaner  
