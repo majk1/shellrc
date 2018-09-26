@@ -58,6 +58,11 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.11**  
+  fixed `currency-exchange` source URL changed to HTTPS only  
+  added `ffmpeg-to-stereo` function to generate dolby stereo video files from 5.1 or 7.1 channel,
+  producing higher volume during speak and lower volume during action and music  
+
 - **1.7.10**  
   added `mvn_gen_pom` function to generate maven pom.xml template  
   

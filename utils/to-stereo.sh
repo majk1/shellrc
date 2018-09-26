@@ -17,3 +17,19 @@
 # 
 # 
 
+function ffmpeg-to-stereo() {
+    src="$1"
+    if [ ! -f "$src" ]; then
+        echo "Source file not found: $src"
+        return 1
+    fi
+    ext="${src##*.}"
+    base="${src%.*}"
+
+    ffmpeg_command="ffmpeg -i \"$src\" -map 0:a:0 -map 0:v:0 -map 0:s -c:v copy -c:a ac3 -ac 2 -af \"aresample=matrix_encoding=dplii\" \"${base}-stereo.${ext}\""
+
+    echo "Running:"
+    echo "${ffmpeg_command}"
+
+    eval $ffmpeg_command
+}

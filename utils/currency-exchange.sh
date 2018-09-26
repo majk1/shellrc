@@ -13,7 +13,7 @@
 # $ currency-exchange -s 10 usd gbp 19
 # 
 
-XREF_URL="http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+XREF_URL="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 XREF_FILE="/tmp/eurofxref-daily.xml"
 
 SILENT=0
