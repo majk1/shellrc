@@ -58,6 +58,10 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.11**  
+  added java (jdk) 11 support  
+  renamed `mvn_gen_pom` to `mvn-gen-pom`   
+
 - **1.7.10**  
   fixed `currency-exchange` source URL changed to HTTPS only  
   added `ffmpeg-to-stereo` function to generate dolby stereo video files from 5.1 or 7.1 channel,
