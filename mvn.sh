@@ -40,11 +40,11 @@ mvn_get_plugin_goals() {
     echo "$description" | sed -n "/^${prefix}:/s/^${prefix}:\(.*\)/\1/p"
 }
 
-# mvn_gen_pom [-t <template>] [groupId] [artifactId] [version]
-# mvn_gen_pom [-t <template>] [groupId:artifactId] [version]
-# mvn_gen_pom [-t <template>] [groupId] [artifactId:version]
-# mvn_gen_pom [-t <template>] [groupId:artifactId:version]
-mvn_gen_pom() {
+# mvn-gen-pom [-t <template>] [groupId] [artifactId] [version]
+# mvn-gen-pom [-t <template>] [groupId:artifactId] [version]
+# mvn-gen-pom [-t <template>] [groupId] [artifactId:version]
+# mvn-gen-pom [-t <template>] [groupId:artifactId:version]
+mvn-gen-pom() {
     template="default"
     
     gav=()

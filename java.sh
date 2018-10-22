@@ -11,15 +11,17 @@ if [ "$(uname)" = "Darwin" ]; then
     export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8 2>/dev/null)
     export JAVA_9_HOME=$(java_home 9 2>/dev/null)
     export JAVA_10_HOME=$(java_home 10 2>/dev/null)
+    export JAVA_11_HOME=$(java_home 11 2>/dev/null)
 
     if [ -z "$JAVA_HOME" ]; then
-        export JAVA_HOME=${JAVA_10_HOME}
+        export JAVA_HOME=${JAVA_11_HOME}
     fi
 
     alias java7='export JAVA_HOME=${JAVA_7_HOME}'
     alias java8='export JAVA_HOME=${JAVA_8_HOME}'
     alias java9='export JAVA_HOME=${JAVA_9_HOME}'
     alias java10='export JAVA_HOME=${JAVA_10_HOME}'
+    alias java11='export JAVA_HOME=${JAVA_11_HOME}'
 fi
 
 export JAVA_OPTS="-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8"
