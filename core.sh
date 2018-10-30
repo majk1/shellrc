@@ -301,7 +301,7 @@ link-rc-scripts() {
 }
 
 update-shellrc() {
-    VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -r)"
+    VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -Vr)"
     LATEST="$(echo "$VERSIONS" | head -n 1)"
     if [ "$LATEST" != "$SHELLRC_VERSION" ]; then
         echo -n "Upgrade shellrc-scripts to version ${LATEST} [y/n]? "

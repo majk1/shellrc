@@ -58,6 +58,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.12**  
+  bugfix #8 - cannot update bug - version number > 9  
+
 - **1.7.11**  
   added java (jdk) 11 support  
   renamed `mvn_gen_pom` to `mvn-gen-pom`   
