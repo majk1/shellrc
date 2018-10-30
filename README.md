@@ -58,6 +58,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.12**  
+  added default env for `docker-env`  and `--clear` attribute to remove env vars  
+
 - **1.7.11**  
   added java (jdk) 11 support  
   renamed `mvn_gen_pom` to `mvn-gen-pom`   
