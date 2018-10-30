@@ -58,6 +58,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.13**  
+  
+  
 - **1.7.12**  
   bugfix #8 - cannot update bug - version number > 9  
   added default env for `docker-env`  and `--clear` attribute to remove env vars  
