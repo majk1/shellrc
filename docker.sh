@@ -2,8 +2,21 @@
 # docker
 
 docker-env() {
-	eval $(docker-machine env $1)
-	echo "Docker environment: $DOCKER_MACHINE_NAME, host: $DOCKER_HOST"
+    target_docker_env="$1"
+    if [ -z "$target_docker_env" ]; then
+        target_docker_env=default
+    fi
+    
+    if [ "$target_docker_env" == "--clear" -o "$target_docker_env" == "-c" ]; then
+        echo "Clearing docker environment"
+        unset DOCKER_MACHINE_NAME
+        unset DOCKER_CERT_PATH
+        unset DOCKER_TLS_VERIFY
+        unset DOCKER_HOST
+    else
+	    eval $(docker-machine env ${target_docker_env})
+	    echo "Docker environment: $DOCKER_MACHINE_NAME, host: $DOCKER_HOST"
+	fi
 }
 
 docker-remove-abandoned-images() {

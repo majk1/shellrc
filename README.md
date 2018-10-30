@@ -60,6 +60,7 @@ source ~/scripts/shellrc.sh
 
 - **1.7.12**  
   bugfix #8 - cannot update bug - version number > 9  
+  added default env for `docker-env`  and `--clear` attribute to remove env vars  
 
 - **1.7.11**  
   added java (jdk) 11 support  
