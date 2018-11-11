@@ -58,6 +58,15 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.13**  
+  `dupli.py` shebang python version fix (python3)  
+  `installer.sh` bugfix #8  
+  `rc/inputrc` now includes key binding to support alt+left/right in IntelliJ IDEA on mac os  
+
+- **1.7.12**  
+  bugfix #8 - cannot update bug - version number > 9  
+  added default env for `docker-env`  and `--clear` attribute to remove env vars  
+
 - **1.7.11**  
   added java (jdk) 11 support  
   renamed `mvn_gen_pom` to `mvn-gen-pom`   
