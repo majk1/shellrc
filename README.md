@@ -59,8 +59,8 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **1.7.13**  
-  dupli.py shebang python version fix (python3)  
-  
+  `dupli.py` shebang python version fix (python3)  
+  `installer.sh` bugfix #8  
   
 - **1.7.12**  
   bugfix #8 - cannot update bug - version number > 9  
