@@ -1,2 +1,6 @@
 set completion-ignore-case on
 set show-all-if-ambiguous on
+
+# macos alt+left/right support in IntelliJ IDEA's terminal
+"\e\e[C": forward-word
+"\e\e[D": backward-word
