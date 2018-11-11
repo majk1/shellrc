@@ -58,6 +58,9 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **current-snapshot**  
+  
+
 - **1.7.13**  
   `dupli.py` shebang python version fix (python3)  
   `installer.sh` bugfix #8  
