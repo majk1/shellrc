@@ -59,7 +59,8 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
-  
+  added `mvn` bash completion  
+
 
 - **1.7.13**  
   `dupli.py` shebang python version fix (python3)  
