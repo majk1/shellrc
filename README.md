@@ -59,7 +59,9 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
-  
+  added `mvn` bash completion  
+  `to-stereo` renamed to `ffmpeg-utils` and added `ffmpeg-info` function  
+  added bash completion source directory `usr/local/etc/bash_completion`  
 
 - **1.7.13**  
   `dupli.py` shebang python version fix (python3)  

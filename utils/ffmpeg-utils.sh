@@ -19,7 +19,7 @@
 
 function ffmpeg-to-stereo() {
     src="$1"
-    if [ ! -f "$src" ]; then
+    if [[ ! -f "$src" ]]; then
         echo "Source file not found: $src"
         return 1
     fi
@@ -31,5 +31,9 @@ function ffmpeg-to-stereo() {
     echo "Running:"
     echo "${ffmpeg_command}"
 
-    eval $ffmpeg_command
+    eval ${ffmpeg_command}
+}
+
+function ffmpeg-info() {
+    ffmpeg -i "$1" 2>&1 | grep 'Stream #[0-9]\+:[0-9]\+\|Duration:'
 }
