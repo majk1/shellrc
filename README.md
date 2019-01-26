@@ -60,6 +60,7 @@ source ~/scripts/shellrc.sh
 
 - **current-snapshot**  
   added `mvn` bash completion  
+  added `ffmpeg-utils` bash completion (`ffmpeg-info` `ffmpeg-to-stereo` `mkvMergeSub`)  
   `to-stereo` renamed to `ffmpeg-utils` and added `ffmpeg-info` function  
   added bash completion source directory `usr/local/etc/bash_completion`  
 

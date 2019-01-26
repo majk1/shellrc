@@ -1,7 +1,6 @@
 # jcmd completion
 
-_jcmd()
-{
+_jcmd() {
     local cur prev jcmds jcmdlist jpids jmainclasses
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
