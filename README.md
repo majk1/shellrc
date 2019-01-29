@@ -63,6 +63,7 @@ source ~/scripts/shellrc.sh
   added `ffmpeg-utils` bash completion (`ffmpeg-info` `ffmpeg-to-stereo` `mkvMergeSub`)  
   `to-stereo` renamed to `ffmpeg-utils` and added `ffmpeg-info` function  
   added bash completion source directory `usr/local/etc/bash_completion`  
+  commented out default `MAVEN_OPTS`, use project specific `.mvn/jvm.config` and `.mvn/maven.config` instead  
 
 - **1.7.13**  
   `dupli.py` shebang python version fix (python3)  

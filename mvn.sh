@@ -1,7 +1,10 @@
 
 # MAVEN
 
-export MAVEN_OPTS="$JAVA_OPTS -noverify -Xmx2048m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+# export MAVEN_OPTS="$JAVA_OPTS -noverify -Xmx1048m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+# use project specific
+# ${PROJECT_ROOT}/.mvn/jvm.config (MAVEN_OPTS replacement, jvm options)
+# ${PROJECT_ROOT}/.mvn/maven.config (mvn command line arguments [without the mvn itself])
 
 alias mvn-all-no-test='mvn clean install -DskipTests'
 alias mvn-all-no-it='mvn clean install -DskipITs'
