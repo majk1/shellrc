@@ -58,6 +58,26 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **current-snapshot**  
+  nothing yet
+
+
+- **1.7.14**  
+  added `mvn` bash completion  
+  added `ffmpeg-utils` bash completion (`ffmpeg-info` `ffmpeg-to-stereo` `mkvMergeSub`)  
+  `to-stereo` renamed to `ffmpeg-utils` and added `ffmpeg-info` function  
+  added bash completion source directory `usr/local/etc/bash_completion`  
+  commented out default `MAVEN_OPTS`, use project specific `.mvn/jvm.config` and `.mvn/maven.config` instead  
+
+- **1.7.13**  
+  `dupli.py` shebang python version fix (python3)  
+  `installer.sh` bugfix #8  
+  `rc/inputrc` now includes key binding to support alt+left/right in IntelliJ IDEA on mac os  
+
+- **1.7.12**  
+  bugfix #8 - cannot update bug - version number > 9  
+  added default env for `docker-env`  and `--clear` attribute to remove env vars  
+
 - **1.7.11**  
   added java (jdk) 11 support  
   renamed `mvn_gen_pom` to `mvn-gen-pom`   
