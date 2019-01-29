@@ -59,6 +59,10 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
+  nothing yet
+
+
+- **1.7.14**  
   added `mvn` bash completion  
   added `ffmpeg-utils` bash completion (`ffmpeg-info` `ffmpeg-to-stereo` `mkvMergeSub`)  
   `to-stereo` renamed to `ffmpeg-utils` and added `ffmpeg-info` function  
