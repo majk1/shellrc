@@ -18,6 +18,14 @@
 # 
 
 function ffmpeg-to-stereo() {
+    map_subs="-map 0:s"
+    if [[ ! -z "$1" ]]; then
+        if [[ "$1" == "--no-sub" ]]; then
+            map_subs=""
+            shift
+        fi
+    fi
+
     src="$1"
     if [[ ! -f "$src" ]]; then
         echo "Source file not found: $src"
@@ -26,7 +34,7 @@ function ffmpeg-to-stereo() {
     ext="${src##*.}"
     base="${src%.*}"
 
-    ffmpeg_command="ffmpeg -i \"$src\" -map 0:a:0 -map 0:v:0 -map 0:s -c:v copy -c:a ac3 -ac 2 -af \"aresample=matrix_encoding=dplii\" \"${base}-stereo.${ext}\""
+    ffmpeg_command="ffmpeg -i \"$src\" -map 0:a:0 -map 0:v:0 $map_subs -c:v copy -c:a ac3 -ac 2 -af \"aresample=matrix_encoding=dplii\" \"${base}-stereo.${ext}\""
 
     echo "Running:"
     echo "${ffmpeg_command}"

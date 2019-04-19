@@ -23,7 +23,9 @@ _ffmpeg_to_stereo() {
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     
-    if [[ ${prev} == ffmpeg-to-stereo ]]; then
+    if [[ ${cur} =~ ^-.* ]]; then
+        COMPREPLY=($(compgen -W "--no-sub" -- "$cur"))
+    else 
         COMPREPLY=($(compgen -W "$(ls -1 | grep -i '.*\(\.mkv\|\.mp4\|\.avi\|\.mov\)$')" -- "$cur"))
     fi
 }

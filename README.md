@@ -59,8 +59,9 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
+  added `git-merge-master` function which will fetch with `-p` and run `git merge origin/master`  
+  added `--no-sub` option to the `ffmpeg-to-stereo`  
   added `adoptopenjdk` support to the java version switcher  
-
 
 - **1.7.14**  
   added `mvn` bash completion  

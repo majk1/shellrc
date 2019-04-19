@@ -1,14 +1,14 @@
 
 # Git specific
 
-if [ -z "$SHOW_GIT_BRANCH_PROMPT" ]; then
+if [[ -z "$SHOW_GIT_BRANCH_PROMPT" ]]; then
     export SHOW_GIT_BRANCH_PROMPT=1
 fi
 
 function _git_ps1() {
-    [ $SHOW_GIT_BRANCH_PROMPT -eq 0 ] && return 1
+    [[ ${SHOW_GIT_BRANCH_PROMPT} -eq 0 ]] && return 1
 	_git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-	if [ $? -eq 0 ]; then
+	if [[ $? -eq 0 ]]; then
 		echo -ne " (${_git_branch})"
 	else
 		echo -ne ""
@@ -20,7 +20,7 @@ function git-pull() {
     base_dir=()
     dry=0
     silent=1
-    while [ ! -z "$1" ]; do
+    while [[ ! -z "$1" ]]; do
         cmd="$1"; shift
         case "$cmd" in
             "-h"|"--help"|"-help")
@@ -45,7 +45,7 @@ function git-pull() {
                 silent=0
                 ;;
             "-d"|"--depth")
-                if [ -z "$1" ]; then
+                if [[ -z "$1" ]]; then
                     echo "Argument -d (depth) requires parameter" >&2
                     return 1
                 fi
@@ -63,12 +63,12 @@ function git-pull() {
         esac
     done
     
-    if [ "${#base_dir[@]}" -eq 0 ]; then
+    if [[ "${#base_dir[@]}" -eq 0 ]]; then
         base_dir=("$(pwd)")
     else
         resolved_dirs=()
         for target_dir in "${base_dir[@]}"; do
-            if [ -d "$target_dir" ]; then
+            if [[ -d "$target_dir" ]]; then
                 resolved_dirs+=("$(cd "$target_dir" && pwd)")
             else
                 echo "Not a valid directory: $target_dir" >&1
@@ -83,13 +83,13 @@ function git-pull() {
         while IFS=  read -r -d $'\0'; do git_dirs+=("${REPLY%*/.git}"); done < <(find "$target_dir" -maxdepth ${depth} -type d -name '.git' -print0)
         for git_dir in "${git_dirs[@]}"; do
             bullet; echo "pulling directory $git_dir"
-            if [ ${dry} -eq 0 ]; then
-                if [ ${silent} -eq 1 ]; then
+            if [[ ${dry} -eq 0 ]]; then
+                if [[ ${silent} -eq 1 ]]; then
                     (cd "$git_dir" && git pull) >/dev/null 2>/dev/null
                 else
                     (cd "$git_dir" && git pull)
                 fi
-                if [ $? -ne 0 ]; then
+                if [[ $? -ne 0 ]]; then
                     git_failures+=("$git_dir")
                 fi
             else
@@ -98,7 +98,7 @@ function git-pull() {
         done
     done
     
-    if [ "${#git_failures[@]}" -gt 0 ]; then
+    if [[ "${#git_failures[@]}" -gt 0 ]]; then
         bullet red; echo "The following git repos could not be pulled:"
         for git_fail_dir in "${git_failures[@]}"; do
             echo "  - ${git_fail_dir}"        
@@ -107,4 +107,9 @@ function git-pull() {
         bullet green; echo "All OK"
     fi
     
+}
+
+function git-merge-master() {
+    git fetch -p
+    git merge origin/master
 }
