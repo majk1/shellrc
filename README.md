@@ -58,7 +58,10 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **current-snapshot**  
+- **current-snapshot**
+  noting yet  
+
+- **1.7.15**  
   added `git-merge-master` function which will fetch with `-p` and run `git merge origin/master`  
   added `--no-sub` option to the `ffmpeg-to-stereo`  
   added `adoptopenjdk` support to the java version switcher  
