@@ -59,7 +59,7 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
-  nothing yet
+  added `adoptopenjdk` support to the java version switcher  
 
 
 - **1.7.14**  
