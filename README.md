@@ -58,8 +58,8 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **current-snapshot**
-  noting yet  
+- **current-snapshot**  
+  nothing yet  
 
 - **1.7.15**  
   added `git-merge-master` function which will fetch with `-p` and run `git merge origin/master`  
