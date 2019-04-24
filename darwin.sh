@@ -75,3 +75,17 @@ dns-flush-cache() {
 	# sierra+ version
 	sudo killall -HUP mDNSResponder; sudo killall -9 mDNSResponderHelper; sudo dscacheutil -flushcache
 }
+
+# brew complation cache
+BREW_BIN=$(which brew)
+function brew() {
+    BREW_COMMANDS_CACHE_FILE=~/.brew-commands-cache
+	if [[ "_$1" == "_commands" ]] && [[ "_$2" == "_--quiet" ]] && [[ "_$3" == "_--include-aliases" ]]; then
+		if ! find "${BREW_COMMANDS_CACHE_FILE}" -mtime +1 -print 2>/dev/null >&2; then
+			${BREW_BIN} commands --quiet --include-aliases > "${BREW_COMMANDS_CACHE_FILE}"
+		fi
+		cat "${BREW_COMMANDS_CACHE_FILE}"
+	else
+		${BREW_BIN} $@
+	fi
+}

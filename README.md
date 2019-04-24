@@ -59,7 +59,8 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
-  nothing yet  
+  added `ij-config-hide-py-scientific-toolwindow` function to hide py scientific toolwindow  
+  added `brew` bash completion cache (this makes the first command completion a lot faster)  
 
 - **1.7.15**  
   added `git-merge-master` function which will fetch with `-p` and run `git merge origin/master`  
