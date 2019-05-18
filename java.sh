@@ -14,12 +14,25 @@ if [[ "$(uname)" = "Darwin" ]]; then
         fi
     }
     
+    function graalvm_home() {
+        base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "graalvm-ce-${1}*" | sort | tail -n 1)"
+        if [[ -z "$base_path" ]]; then
+            base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "graalvm*-${1}*" | sort | tail -n 1)"
+        fi
+        if [[ -d "$base_path" ]]; then
+            echo "${base_path}/Contents/Home"
+        else
+            echo ""
+        fi
+    }
+        
     export JAVA_7_HOME=$(/usr/libexec/java_home -v1.7 2>/dev/null)
     export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8 2>/dev/null)
     export JAVA_9_HOME=$(java_home 9 2>/dev/null)
     export JAVA_10_HOME=$(java_home 10 2>/dev/null)
     export JAVA_11_HOME=$(java_home 11 2>/dev/null)
     export JAVA_12_HOME=$(java_home 12 2>/dev/null)
+    export GRAALVM_19_HOME=$(graalvm_home 19 2>/dev/null)
 
     if [[ -z "$JAVA_HOME" ]]; then
         export JAVA_HOME=${JAVA_11_HOME}
@@ -31,6 +44,13 @@ if [[ "$(uname)" = "Darwin" ]]; then
     alias java10='export JAVA_HOME=${JAVA_10_HOME}'
     alias java11='export JAVA_HOME=${JAVA_11_HOME}'
     alias java12='export JAVA_HOME=${JAVA_12_HOME}'
+    
+    function graalvm19() {
+        export JAVA_HOME=${GRAALVM_19_HOME}
+        export PATH=${GRAALVM_19_HOME}/bin:$PATH
+    }
+    
+    alias java_list='/usr/libexec/java_home -V'
 fi
 
 export JAVA_OPTS="-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8"

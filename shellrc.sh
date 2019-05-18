@@ -57,6 +57,7 @@ alias format-number="${SCRIPT_BASE_DIR}/utils/format-number.sh"
 alias currency-exchange="${SCRIPT_BASE_DIR}/utils/currency-exchange.sh"
 alias unicode="${SCRIPT_BASE_DIR}/utils/unicode.py"
 alias dupli="${SCRIPT_BASE_DIR}/utils/dupli.py"
+alias to-monospace="${SCRIPT_BASE_DIR}/utils/to-monospace.sh"
 
 # show status if exists
 if [ -x ~/bin/status.sh ]; then
