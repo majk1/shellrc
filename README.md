@@ -61,6 +61,9 @@ source ~/scripts/shellrc.sh
 - **current-snapshot**  
   nothing yet  
 
+- **1.7.17**  
+  brew completion fix
+
 - **1.7.16**  
   added `ij-config-hide-py-scientific-toolwindow` function to hide py scientific toolwindow  
   added `brew` bash completion cache (this makes the first command completion a lot faster)  

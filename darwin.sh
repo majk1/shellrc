@@ -87,7 +87,7 @@ function brew() {
 		cat "${BREW_COMMANDS_CACHE_FILE}"
 	else
         if [[ "_$1" == "_upgrade" ]] || [[ "_$1" == "_update" ]]; then
-            rm "${BREW_COMMANDS_CACHE_FILE}"
+            rm "${BREW_COMMANDS_CACHE_FILE}" >/dev/null 2>&1
         fi
 		${BREW_BIN} $@
 	fi
