@@ -27,7 +27,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
     }
         
     export JAVA_7_HOME=$(/usr/libexec/java_home -v1.7 2>/dev/null)
-    export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8 2>/dev/null)
+    export JAVA_8_HOME=$(java_home 8 2>/dev/null)
     export JAVA_9_HOME=$(java_home 9 2>/dev/null)
     export JAVA_10_HOME=$(java_home 10 2>/dev/null)
     export JAVA_11_HOME=$(java_home 11 2>/dev/null)

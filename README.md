@@ -59,7 +59,7 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
-  nothing yet  
+  fix for java8 selection alias (graalvm was selected if was present, instead of openjdk)  
 
 - **1.7.17**  
   brew completion fix
