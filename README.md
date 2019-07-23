@@ -60,6 +60,7 @@ source ~/scripts/shellrc.sh
 
 - **current-snapshot**  
   fix for java8 selection alias (graalvm was selected if was present, instead of openjdk)  
+  history size has been set to unlimited for all shells  
 
 - **1.7.17**  
   brew completion fix
