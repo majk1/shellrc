@@ -59,7 +59,9 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
-  fix for java8 selection alias (graalvm was selected if was present, instead of openjdk)  
+  
+- **1.7.18**  
+  fix for java8 selection alias (graalvm was selected if it was present, instead of openjdk)  
   history size has been set to unlimited for all shells  
   bash-completion for `mvn` fix to be able to use in zsh as well  
 
