@@ -68,7 +68,7 @@ _mvn()
     plugin_goals_liquibase="liquibase:update"
     plugin_goals_spring_boot="spring-boot:run|spring-boot:start|spring-boot:stop|spring-boot:repackage|spring-boot:help|spring-boot:build-info"
 
-    options="-Dmaven.test.skip=true|-Dmaven.test.failure.ignore=true|-DskipTests|-DskipITs|-Dmaven.surefire.debug|-DenableCiProfile|-Dpmd.skip=true|-Dcheckstyle.skip=true|-Dfile=|-DgroupID=|-DartifactId=|-Dversion=|-Dpackaging=|-Dsonar.exclusions=|-Dsonar.profile=|-DdryRun=true|-DskipDependencyVersionsCheck=true"
+    sys_props="-Dmaven.test.skip=true|-Dmaven.test.failure.ignore=true|-DskipTests|-DskipITs|-Dmaven.surefire.debug|-DenableCiProfile|-Dpmd.skip=true|-Dcheckstyle.skip=true|-Dfile=|-DgroupID=|-DartifactId=|-Dversion=|-Dpackaging=|-Dsonar.exclusions=|-Dsonar.profile=|-DdryRun=true|-DskipDependencyVersionsCheck=true"
 
     profile_settings=`[[ -e ~/.m2/settings.xml ]] && grep -e "<profile>" -A 1 ~/.m2/settings.xml | grep -e "<id>.*</id>" | sed 's/.*<id>/-P/' | sed 's/<\/id>//g'`
     profile_pom=`[[ -e pom.xml ]] && grep -e "<profile>" -A 1 pom.xml | grep -e "<id>.*</id>" | sed 's/.*<id>/-P/' | sed 's/<\/id>//g'`
@@ -88,7 +88,7 @@ _mvn()
 			 	 COMPREPLY=( $(compgen -S ' ' -W "jar|war" -- ${cur##*=}) )
 
 	         elif [[ ${cur} == -D* ]] ; then
-                 COMPREPLY=( $(compgen -S '' -W "${options}" -- ${cur}) )
+                 COMPREPLY=( $(compgen -S '' -W "${sys_props}" -- ${cur}) )
 
 			 elif [[ ${cur} == -P* ]] ; then
                  COMPREPLY=( $(compgen -S ' ' -W "${profile_settings}|${profile_pom}" -- ${cur}) )
