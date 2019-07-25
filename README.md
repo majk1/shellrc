@@ -59,6 +59,7 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
+  zsh bindkey for *bash style* backward kill word for `ctrl+e`  
   
 - **1.7.18**  
   fix for java8 selection alias (graalvm was selected if it was present, instead of openjdk)  
