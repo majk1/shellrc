@@ -58,8 +58,15 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **current-snapshot**  
-  
+- **current-snapshot**
+
+- **1.7.19**  
+  zsh bindkey for *bash style* backward kill word for `ctrl+e`  
+  zsh added `-u` to compinit to ignore insecure directories (SHOULD BE FIXED INSTEAD)  
+  added `airport` alias for macos  
+  `brew` completion cache is disabled for other shell than bash  
+  `pip` completion fix
+
 - **1.7.18**  
   fix for java8 selection alias (graalvm was selected if it was present, instead of openjdk)  
   history size has been set to unlimited for all shells  
