@@ -110,7 +110,8 @@ _mvn()
 				 for plugin in ${common_plugins}; do
 					 if [[ ${cur} == ${plugin}:* ]]; then
 						 var_name="plugin_goals_${plugin//-/_}"
-						 COMPREPLY=( $(compgen -W "${!var_name}" -S ' ' -- ${cur}) )
+						 eval "var_content=\"\${${var_name}}\""
+						 COMPREPLY=( $(compgen -W "${var_content}" -S ' ' -- ${cur}) )
 					 fi
 				 done
 
