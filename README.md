@@ -59,7 +59,11 @@ source ~/scripts/shellrc.sh
 ## Changelog
 
 - **current-snapshot**  
+  nothing yet
+  
+- **1.7.20**  
   fixed `mvn` code completion indirect variable expansion shell incompatibility (bash supported `${!var}` has been replaced to use eval instead of zsh supported `${(P)var}`)  
+  added `mvn` javadoc and source skip completion
 
 - **1.7.19**  
   zsh bindkey for *bash style* backward kill word for `ctrl+e`  
