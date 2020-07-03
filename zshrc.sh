@@ -18,7 +18,7 @@ zstyle :compinstall filename "~/.zshrc"
 autoload -Uz compinit && compinit -u
 autoload -U promptinit && promptinit
 autoload -U colors && colors
-autoload bashcompinit && bashcompinit
+autoload -U +X bashcompinit && bashcompinit
 
 for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
 	. ${compfile}
@@ -27,6 +27,8 @@ done
 if [[ -d /usr/local/share/zsh-completions ]]; then
 	fpath=(/usr/local/share/zsh-completions ${fpath})
 fi
+
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 HISTFILE=~/.histfile
 HISTSIZE=10000000

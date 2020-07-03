@@ -60,6 +60,9 @@ source ~/scripts/shellrc.sh
 
 - **current-snapshot**  
   nothing yet
+
+- **1.7.21**  
+  added fzf loading and default env variables
   
 - **1.7.20**  
   fixed `mvn` code completion indirect variable expansion shell incompatibility (bash supported `${!var}` has been replaced to use eval instead of zsh supported `${(P)var}`)  

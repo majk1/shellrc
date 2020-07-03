@@ -12,6 +12,7 @@ shopt -s checkwinsize
 [[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion
 [[ -f /opt/local/etc/bash_completion ]] && . /opt/local/etc/bash_completion
+[[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
 
 # Cygwin specific
 if ! echo "$(uname)" | grep -q -i 'cygwin'; then
