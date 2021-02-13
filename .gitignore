@@ -3,3 +3,5 @@ target
 *.iml
 .vscode
 playbook
+utils/z
+utils/zsh-syntax-highlighting

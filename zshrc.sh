@@ -100,3 +100,14 @@ shortPrompt() {
 longPrompt() {
 	PROMPT_DIRECTORY='~'
 }
+
+
+if [[ ! -d "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting" ]]; then
+		if type -p git > /dev/null; then
+				git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting"
+		fi
+fi
+
+if [[ -e "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+		source "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
