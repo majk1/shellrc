@@ -58,8 +58,12 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **current-snapshot**
-  nothing yet
+- **current-snapshot**  
+  ?
+  
+- **1.7.23**  
+  fixed `installer.sh`  
+  added lastX aliases  
 
 - **1.7.22**  
   added GraalVM 21  

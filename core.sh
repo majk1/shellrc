@@ -41,6 +41,11 @@ if [ "$USER" = "root" ]; then
     alias mv='mv -i'
 fi
 
+alias last5='ls -t | head -n 5'
+alias last10='ls -t | head -n 10'
+alias last15='ls -t | head -n 15'
+alias lastx='ls -t | head -n'
+
 # functions
 
 bullet() {
@@ -305,7 +310,7 @@ link-rc-scripts() {
 }
 
 update-shellrc() {
-    VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -Vr)"
+    VERSIONS="$(wget --no-cache -q -O- 'https://github.com/majk1/shellrc/releases' | grep "/majk1/shellrc/archive/.*\.tar\.gz" | sed '/\/majk1\/shellrc\/archive\/refs\/tags\/.*\.tar\.gz/s/.*href="\/majk1\/shellrc\/archive\/refs\/tags\/\([0-9\.]*\)\.tar\.gz".*/\1/' | sort -Vr)"
     LATEST="$(echo "$VERSIONS" | head -n 1)"
     if [ "$LATEST" != "$SHELLRC_VERSION" ]; then
         echo -n "Upgrade shellrc-scripts to version ${LATEST} [y/n]? "
