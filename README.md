@@ -58,8 +58,13 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **current-snapshot**  
-  nothing yet
+- **1.7.23**  
+  fixed `installer.sh`  
+  added lastX aliases  
+
+- **1.7.22**  
+  added GraalVM 21  
+  added zsh command line syntax highlighting
 
 - **1.7.21**  
   added fzf loading and default env variables
