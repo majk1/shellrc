@@ -2,6 +2,8 @@
 
 mkvMergeSub() {
 
+NO_UTF8_CONV=0
+
 if [ -z "$1" ]; then
 	echo "Usage:"
 	echo "${FUNCNAME[0]} <video file> [subtitle file]"
@@ -9,6 +11,11 @@ if [ -z "$1" ]; then
 	echo "if subtitle file is not specified, the script will try to guess from the video file"
 	echo
 	return 2
+fi
+
+if [[ "$1" == "--no-conv" ]]; then
+		NO_UTF8_CONV=1
+		shift
 fi
 
 VIDEO=$1
@@ -29,14 +36,19 @@ SUB_NAME=${SUB%.*}
 SUB_EXT=${SUB##*.}
 SUB_UTF8=${SUB_NAME}-utf8.${SUB_EXT}
 
-echo -n "Converting subtitle to UTF-8: ${SUB} ... "
-iconv -f iso-8859-2 -t utf-8 $SUB > $SUB_UTF8 2>/dev/null
-if [ $? -ne 0 ]; then
-	echo "failed"
-	echo "Some error occured during converting subtitle to UTF-8" >&2
-	return 1
+if [ $NO_UTF8_CONV -eq 0 ]; then
+		echo -n "Converting subtitle to UTF-8: ${SUB} ... "
+		iconv -f iso-8859-2 -t utf-8 $SUB > $SUB_UTF8 2>/dev/null
+		if [ $? -ne 0 ]; then
+			echo "failed"
+			echo "Some error occured during converting subtitle to UTF-8" >&2
+			return 1
+		else
+			echo "done"
+		fi
 else
-	echo "done"
+		echo "Subtitle UTF-8 conversion skipped."
+		SUB_UTF8="$SUB"
 fi
 
 echo -n "Merging subtitle with video: ${VIDEO} ... "

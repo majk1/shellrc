@@ -41,6 +41,8 @@ _mkv_merge_sub() {
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     
     if [[ ${prev} == mkvMergeSub ]]; then
+    		COMPREPLY=($(compgen -W "$(ls -1 | grep -i '.*\.mkv$'; echo '--no-conv')" -- "$cur"))
+    elif [[ ${prev} == "--no-conv" ]]; then
         COMPREPLY=($(compgen -W "$(ls -1 | grep -i '.*\.mkv$')" -- "$cur"))
     elif [[ ${prev} =~ .*\.mkv ]]; then
         COMPREPLY=($(compgen -W "$(ls -1 | grep -i '.*\.srt$')" -- "$cur"))

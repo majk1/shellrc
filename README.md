@@ -60,7 +60,13 @@ source ~/scripts/shellrc.sh
 
 - **current-snapshot**  
   ?
-  
+
+- **1.7.24**  
+  added `uibuilder` function to generate [UIBuilder](https://uibuilder.devbench.io) project  
+  ffmpeg utils stereo downmix fix  
+  added `mkvMergeSub` `--no-conv` parameter to skip subtitle UTF-8 conversion  
+  removed jdk 10 and 12 alias, added jdk 17  
+
 - **1.7.23**  
   fixed `installer.sh`  
   added lastX aliases  
