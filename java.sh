@@ -7,6 +7,9 @@ if [[ "$(uname)" = "Darwin" ]]; then
         if [[ -z "$base_path" ]]; then
             base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "jdk-${1}*" | sort | tail -n 1)"
         fi
+        if [[ -z "$base_path" ]]; then
+        	base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "openjdk-${1}*" | sort | tail -n 1)"
+        fi
         if [[ -d "$base_path" ]]; then
             echo "${base_path}/Contents/Home"
         else
