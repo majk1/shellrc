@@ -3,12 +3,12 @@
 
 if [[ "$(uname)" = "Darwin" ]]; then
     function java_home() {
-        base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "adoptopenjdk-${1}*" | sort | tail -n 1)"
+        base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "adoptopenjdk-${1}*" | sort | tail -n 1)"
         if [[ -z "$base_path" ]]; then
-            base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "jdk-${1}*" | sort | tail -n 1)"
+            base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "jdk-${1}*" | sort | tail -n 1)"
         fi
         if [[ -z "$base_path" ]]; then
-        	base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "openjdk-${1}*" | sort | tail -n 1)"
+        	base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk-${1}*" | sort | tail -n 1)"
         fi
         if [[ -d "$base_path" ]]; then
             echo "${base_path}/Contents/Home"
@@ -18,9 +18,9 @@ if [[ "$(uname)" = "Darwin" ]]; then
     }
     
     function graalvm_home() {
-        base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "graalvm-ce-${1}*" | sort | tail -n 1)"
+        base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "graalvm-ce-${1}*" | sort | tail -n 1)"
         if [[ -z "$base_path" ]]; then
-            base_path="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name "graalvm-*-${1}*" | sort | tail -n 1)"
+            base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "graalvm-*-${1}*" | sort | tail -n 1)"
         fi
         if [[ -d "$base_path" ]]; then
             echo "${base_path}/Contents/Home"
