@@ -10,6 +10,14 @@ if [[ -d /etc/profile.d ]]; then
 	unset i
 fi
 
+if type brew &>/dev/null; then
+  fpath=("$(brew --prefix)/share/zsh/site-functions" ${fpath})
+fi
+
+if [[ -d /usr/local/share/zsh-completions ]]; then
+	fpath=(/usr/local/share/zsh-completions ${fpath})
+fi
+
 zstyle ':completion:*' completer _expand _complete _ignored
 zstyle ':completion:*' max-errors 2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -23,14 +31,6 @@ autoload -U +X bashcompinit && bashcompinit
 for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
 	. ${compfile}
 done
-
-if [[ -d /usr/local/share/zsh-completions ]]; then
-	fpath=(/usr/local/share/zsh-completions ${fpath})
-fi
-
-if [[ -f /opt/homebrew/completions/zsh/_brew ]]; then
-	. /opt/homebrew/completions/zsh/_brew
-fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
