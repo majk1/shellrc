@@ -28,6 +28,10 @@ if [[ -d /usr/local/share/zsh-completions ]]; then
 	fpath=(/usr/local/share/zsh-completions ${fpath})
 fi
 
+if [[ -f /opt/homebrew/completions/zsh/_brew ]]; then
+	. /opt/homebrew/completions/zsh/_brew
+fi
+
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 HISTFILE=~/.histfile

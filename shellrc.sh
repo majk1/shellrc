@@ -45,12 +45,6 @@ if echo "$(uname)" | grep -q -i 'cygwin'; then
     source ${SCRIPT_BASE_DIR}/cygwin.sh
 fi
 
-if [[ -d /opt/homebrew/etc/bash_completion.d ]]; then
-	for compfile in /opt/homebrew/etc/bash_completion.d/*; do
-    	. ${compfile}
-    done
-fi
-
 # Universal utils
 . "${SCRIPT_BASE_DIR}/utils/mkvMergeSub.sh"
 . "${SCRIPT_BASE_DIR}/utils/createShellCommandFromJar.sh"

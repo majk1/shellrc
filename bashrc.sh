@@ -14,6 +14,10 @@ shopt -s checkwinsize
 [[ -f /opt/local/etc/bash_completion ]] && . /opt/local/etc/bash_completion
 [[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
 
+if [[ -f /opt/homebrew/completions/bash/_brew ]]; then
+	. /opt/homebrew/completions/bash/_brew
+fi
+
 # Cygwin specific
 if ! echo "$(uname)" | grep -q -i 'cygwin'; then
     for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
