@@ -348,7 +348,3 @@ source $SCRIPT_BASE_DIR/git.sh
 source $SCRIPT_BASE_DIR/java.sh
 source $SCRIPT_BASE_DIR/mvn.sh
 source $SCRIPT_BASE_DIR/docker.sh
-
-if [ -f ${HOME}/.customshellrc ]; then
-    source ${HOME}/.customshellrc
-fi

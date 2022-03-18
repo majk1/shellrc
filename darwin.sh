@@ -85,7 +85,7 @@ dns-flush-cache() {
 	sudo dscacheutil -flushcache
 }
 
-# brew bash complation cache
+# brew bash completion cache
 if [[ "${SHELL_TYPE}" == "bash" ]]; then
 	BREW_BIN=$(which brew)
 	function brew() {
@@ -103,3 +103,8 @@ if [[ "${SHELL_TYPE}" == "bash" ]]; then
 		fi
 	}
 fi
+
+alias mac-battery-logger="${SCRIPT_BASE_DIR}/utils/mac-battery-logger.sh"
+alias free="${SCRIPT_BASE_DIR}/utils/mac-free.sh"
+
+. "${SCRIPT_BASE_DIR}/utils/viscosity.sh"

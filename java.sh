@@ -36,6 +36,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
     export JAVA_17_HOME=$(java_home 17 2>/dev/null)
     export GRAALVM_19_HOME=$(graalvm_home 19 2>/dev/null)
     export GRAALVM_21_HOME=$(graalvm_home 21 2>/dev/null)
+    export GRAALVM_22_HOME=$(graalvm_home 22 2>/dev/null)
 
     if [[ -z "$JAVA_HOME" ]]; then
         export JAVA_HOME=${JAVA_11_HOME}
@@ -55,6 +56,11 @@ if [[ "$(uname)" = "Darwin" ]]; then
     function graalvm21() {
         export JAVA_HOME=${GRAALVM_21_HOME}
         export PATH=${GRAALVM_21_HOME}/bin:$PATH
+    }
+
+    function graalvm22() {
+        export JAVA_HOME=${GRAALVM_22_HOME}
+        export PATH=${GRAALVM_22_HOME}/bin:$PATH
     }
     
     alias java_list='/usr/libexec/java_home -V'

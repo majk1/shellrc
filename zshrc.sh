@@ -21,9 +21,9 @@ fi
 zstyle ':completion:*' completer _expand _complete _ignored
 zstyle ':completion:*' max-errors 2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle :compinstall filename "~/.zshrc"
+zstyle :compinstall filename "${HOME}/.zshrc"
 
-autoload -Uz compinit && compinit -u
+autoload -Uz +X compinit && compinit -u
 autoload -U promptinit && promptinit
 autoload -U colors && colors
 autoload -U +X bashcompinit && bashcompinit
@@ -32,7 +32,7 @@ for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
 	. ${compfile}
 done
 
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && . ~/.fzf.zsh
 
 HISTFILE=~/.histfile
 HISTSIZE=10000000
@@ -105,13 +105,18 @@ longPrompt() {
 	PROMPT_DIRECTORY='~'
 }
 
+if [[ ! -d "$SCRIPT_BASE_DIR/utils/z" ]]; then
+	if type -p git > /dev/null; then
+		git clone --quiet https://github.com/rupa/z.git "$SCRIPT_BASE_DIR/utils/z"
+	fi
+fi
 
 if [[ ! -d "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting" ]]; then
-		if type -p git > /dev/null; then
-				git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting"
-		fi
+	if type -p git > /dev/null; then
+		git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting"
+	fi
 fi
 
 if [[ -e "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
-		source "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+	. "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi

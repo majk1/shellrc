@@ -58,8 +58,15 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
-- **current-snapshot**  
-  ?
+- **1.7.25**  
+  Added macos battery logger script  
+  Added macos `free` command replacement (memory status)  
+  Added homebrew specific bash completion  
+  Added more JDK pattern to find appropriate version
+  Added auto-clone for `z`  
+  Added Viscosity VPN control command line functions  
+  Removed directory restriction for jdk path to enable the use of symlinks  
+  zsh source order fix and other completion fixes  
 
 - **1.7.24**  
   added `uibuilder` function to generate [UIBuilder](https://uibuilder.devbench.io) project  
