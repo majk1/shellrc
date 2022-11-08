@@ -107,4 +107,9 @@ fi
 alias mac-battery-logger="${SCRIPT_BASE_DIR}/utils/mac-battery-logger.sh"
 alias free="${SCRIPT_BASE_DIR}/utils/mac-free.sh"
 
+function psgrep() {
+	ps aux | grep "$1" | grep -v grep
+}
+
 . "${SCRIPT_BASE_DIR}/utils/viscosity.sh"
+. "${SCRIPT_BASE_DIR}/utils/reminders.sh"

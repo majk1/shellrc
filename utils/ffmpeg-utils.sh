@@ -1,23 +1,4 @@
 #!/usr/bin/env bash
-#
-# TODO: utils/to-stereo.sh (draft)
-#
-
-# ${TITLE}_stereo.ac3: ${TITLE}_51.ac3
-#         ffmpeg -i ${TITLE}_51.ac3 -ac 2 \
-#         -af "pan=stereo|FL=FC+0.30*FL+0.30*BL|FR=FC+0.30*FR+0.30*BR"    \
-#         ${TITLE}_stereo.ac3
-
-
-#
-# 
-# ffmpeg -i input_51.mkv -c:v copy -c:a ac3 -ac 2 -af "pan=stereo|FL=FC+0.30*FL+0.30*BL|FR=FC+0.30*FR+0.30*BR" output_stereo.mkv
-#
-# -c:v copy -c:a ac3 -b:a 640k -vol 425 -af "pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE"
-#
-# ffmpeg -i input_51.mkv -map 0:a:0 -map 0:v:0 -map 0:s -c:v copy -c:a ac3 -ac 2 -af "aresample=matrix_encoding=dplii" output_stereo.mkv
-# 
-# 
 
 function ffmpeg-to-stereo() {
     map_subs="-map 0:s"
@@ -33,11 +14,17 @@ function ffmpeg-to-stereo() {
         echo "Source file not found: $src"
         return 1
     fi
+    shift
     ext="${src##*.}"
     base="${src%.*}"
 
+	meta="-map_metadata 0"
+    if [[ -f FFMETADATAFILE.txt ]]; then
+    	meta="-i FFMETADATAFILE.txt -map_metadata 1"
+    fi
+
     # ffmpeg_command="ffmpeg -i \"$src\" -map 0:a:0 -map 0:v:0 $map_subs -c:v copy -c:a ac3 -ac 2 -af \"aresample=matrix_encoding=dplii\" \"${base}-stereo.${ext}\""
-    ffmpeg_command="ffmpeg -i \"$src\" -map 0:a:0 -map 0:v:0 $map_subs -c:v copy -c:a ac3 -b:a 640k -vol 425 -af \"pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE\" \"${base}-stereo.${ext}\""
+    ffmpeg_command="ffmpeg -i \"$src\" $meta -map 0:a:0 -map 0:v:0 $map_subs -c:v copy -c:a ac3 -b:a 640k -vol 425 -af \"pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE\" $* \"${base}-stereo.${ext}\""
 
     echo "Running:"
     echo "${ffmpeg_command}"

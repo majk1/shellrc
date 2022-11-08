@@ -10,6 +10,9 @@ if [[ "$(uname)" = "Darwin" ]]; then
         if [[ -z "$base_path" ]]; then
         	base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk-${1}*" | sort | tail -n 1)"
         fi
+        if [[ -z "$base_path" ]]; then
+			base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk.jdk" | sort | tail -n 1)"
+		fi
         if [[ -d "$base_path" ]]; then
             echo "${base_path}/Contents/Home"
         else
@@ -33,21 +36,25 @@ if [[ "$(uname)" = "Darwin" ]]; then
     export JAVA_8_HOME=$(java_home 8 2>/dev/null)
     export JAVA_9_HOME=$(java_home 9 2>/dev/null)
     export JAVA_11_HOME=$(java_home 11 2>/dev/null)
+    export JAVA_16_HOME=$(java_home 16 2>/dev/null)
     export JAVA_17_HOME=$(java_home 17 2>/dev/null)
+    export JAVA_18_HOME=$(java_home 18 2>/dev/null)
     export GRAALVM_19_HOME=$(graalvm_home 19 2>/dev/null)
     export GRAALVM_21_HOME=$(graalvm_home 21 2>/dev/null)
     export GRAALVM_22_HOME=$(graalvm_home 22 2>/dev/null)
 
     if [[ -z "$JAVA_HOME" ]]; then
-        export JAVA_HOME=${JAVA_11_HOME}
+        export JAVA_HOME=${JAVA_17_HOME}
     fi
 
     alias java7='export JAVA_HOME=${JAVA_7_HOME}'
     alias java8='export JAVA_HOME=${JAVA_8_HOME}'
     alias java9='export JAVA_HOME=${JAVA_9_HOME}'
     alias java11='export JAVA_HOME=${JAVA_11_HOME}'
+    alias java16='export JAVA_HOME=${JAVA_16_HOME}'
     alias java17='export JAVA_HOME=${JAVA_17_HOME}'
-    
+    alias java18='export JAVA_HOME=${JAVA_18_HOME}'
+
     function graalvm19() {
         export JAVA_HOME=${GRAALVM_19_HOME}
         export PATH=${GRAALVM_19_HOME}/bin:$PATH

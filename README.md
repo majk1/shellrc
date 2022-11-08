@@ -58,6 +58,12 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.26**  
+  python3 version for `urlencode`, `urldecode`, `millis` and `nanos`  
+  `ffmpeg-to-stereo`: added metadata support and additional parameters  
+  java: Added version 16 and 18, changed default to version 17  
+  darwin: Added `psgrep`, and initial version of `reminders`  
+
 - **1.7.25**  
   Added macos battery logger script  
   Added macos `free` command replacement (memory status)  

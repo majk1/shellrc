@@ -147,17 +147,17 @@ rot47() {
 	echo "$1" | tr "\!-~" "P-~\!-O"
 }
 urlencode() {
-	python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])" "$1"
+	python3 -c "import sys, urllib.parse as ul; print(ul.quote(sys.argv[1]))" "$1"
 }
 urldecode() {
-	python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])" "$1"
+	python3 -c "import sys, urllib.parse as ul; print(ul.unquote(sys.argv[1]))" "$1"
 }
 
 millis() {
-    python -c "import time; print(int(time.time()*1000))"
+    python3 -c "import time; print(int(time.time()*1000))"
 }
 nanos() {
-    python -c "import time; print(int(time.time()*1000000000))"
+    python3 -c "import time; print(int(time.time()*1000000000))"
 }
 
 weather() {
