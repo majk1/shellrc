@@ -342,6 +342,10 @@ if type -p source-highlight >/dev/null 2>&1; then
     alias colorcat='source-highlight -n -f esc -i '
 fi
 
+pure() {
+	sh -c "$*"
+}
+
 # includes
 source $SCRIPT_BASE_DIR/idea.sh
 source $SCRIPT_BASE_DIR/git.sh

@@ -58,6 +58,12 @@ source ~/scripts/shellrc.sh
 
 ## Changelog
 
+- **1.7.27**  
+  FZF ALT_C and COMPLETION_TRIGGER has been added  
+  zsh added `complete aliases`  
+  `ffmpeg-to-stereo`: improved
+  imporved `.vimrc` and added `config.nvim` into `rc` files (link this directory to `~/.config/nvim`)
+
 - **1.7.26**  
   python3 version for `urlencode`, `urldecode`, `millis` and `nanos`  
   `ffmpeg-to-stereo`: added metadata support and additional parameters  

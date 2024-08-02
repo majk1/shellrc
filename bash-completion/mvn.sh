@@ -68,14 +68,19 @@ _mvn()
     plugin_goals_liquibase="liquibase:update"
     plugin_goals_spring_boot="spring-boot:run|spring-boot:start|spring-boot:stop|spring-boot:repackage|spring-boot:help|spring-boot:build-info"
 
-    sys_props="-Dmaven.test.skip=true|-Dmaven.javadoc.skip=true|-Dmaven.source.skip=true|-Dmaven.test.failure.ignore=true|-DskipTests|-DskipITs|-Dmaven.surefire.debug|-DenableCiProfile|-Dpmd.skip=true|-Dcheckstyle.skip=true|-Dfile=|-Dfilter=|-Dfilter=pom-root|-DgroupID=|-DartifactId=|-Dversion=|-Dpackaging=|-Dsonar.exclusions=|-Dsonar.profile=|-DdryRun=true|-DskipDependencyVersionsCheck=true"
+    sys_props="-Dmaven.test.skip=true|-Dmaven.javadoc.skip=true|-Dmaven.source.skip=true|-Dmaven.test.failure.ignore=true|-DskipTests|-DskipITs|-Dmaven.surefire.debug|-DenableCiProfile|-Dpmd.skip=true|-Dcheckstyle.skip=true|-Dfile=|-Dfilter=|-Dfilter=pom-root|-DgroupID=|-DartifactId=|-Dversion=|-Dpackaging=|-Dsonar.exclusions=|-Dsonar.profile=|-DdryRun=true|-DskipDependencyVersionsCheck=true|-Dtest=|-Dit.test="
 
     profile_settings=`[[ -e ~/.m2/settings.xml ]] && grep -e "<profile>" -A 1 ~/.m2/settings.xml | grep -e "<id>.*</id>" | sed 's/.*<id>/-P/' | sed 's/<\/id>//g'`
     profile_pom=`[[ -e pom.xml ]] && grep -e "<profile>" -A 1 pom.xml | grep -e "<id>.*</id>" | sed 's/.*<id>/-P/' | sed 's/<\/id>//g'`
 
     local IFS=$'|\n'
 
-			 if [[ ${cur} == -Dfile= ]] ; then
+			 if [[ ${prev} == versions:set ]] ; then
+			 	 if [[ ${cur} == -D* ]] ; then
+				 	 COMPREPLY=( $(compgen -S '' -W "-DnewVersion|${sys_props}" -- ${cur}) )
+				 fi
+
+			 elif [[ ${cur} == -Dfile= ]] ; then
 				 COMPREPLY=( $(compgen -d -S ' ' -- ${cur}) )
 
 			 elif [[ ${cur} == -Dsonar.exclusions= ]] ; then
@@ -94,10 +99,10 @@ _mvn()
                  COMPREPLY=( $(compgen -S ' ' -W "${profile_settings}|${profile_pom}" -- ${cur}) )
                  
 			 elif [[ ${cur} == --* ]] ; then
-			 COMPREPLY=( $(compgen -W "${long_opts}" -S ' ' -- ${cur}) )
+			 	 COMPREPLY=( $(compgen -W "${long_opts}" -S ' ' -- ${cur}) )
 
 			 elif [[ ${cur} == -* ]] ; then
-			 COMPREPLY=( $(compgen -W "${opts}" -S ' ' -- ${cur}) )
+			 	 COMPREPLY=( $(compgen -W "${opts}" -S ' ' -- ${cur}) )
 
 			 elif [[ ${prev} == -pl ]] ; then
     			 if [[ ${cur} == *,* ]] ; then
@@ -109,7 +114,7 @@ _mvn()
 			 elif [[ ${cur} == *:* ]] ; then
 				 for plugin in ${common_plugins}; do
 					 if [[ ${cur} == ${plugin}:* ]]; then
-						 var_name="plugin_goals_${plugin//-/_}"
+					     var_name="plugin_goals_${plugin//-/_}"
 						 eval "var_content=\"\${${var_name}}\""
 						 COMPREPLY=( $(compgen -W "${var_content}" -S ' ' -- ${cur}) )
 					 fi

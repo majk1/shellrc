@@ -37,7 +37,7 @@ done
 HISTFILE=~/.histfile
 HISTSIZE=10000000
 SAVEHIST=10000000
-setopt appendhistory autocd extendedglob hist_ignore_dups
+setopt appendhistory autocd extendedglob hist_ignore_dups completealiases
 unsetopt beep nomatch notify
 bindkey -e
 

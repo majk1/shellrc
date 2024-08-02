@@ -72,8 +72,9 @@ export LANG=en_US.UTF-8
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --color=never'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --typed . --color=never'
+export FZF_ALT_C_COMMAND='fd --type d . --color=never'
 export FZF_DEFAULT_OPTS='--height 75% --multi --reverse'
+export FZF_COMPLETION_TRIGGER='**'
 
 if [ -f ${HOME}/.customshellrc ]; then
     . ${HOME}/.customshellrc

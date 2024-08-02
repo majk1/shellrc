@@ -24,7 +24,7 @@ function ffmpeg-to-stereo() {
     fi
 
     # ffmpeg_command="ffmpeg -i \"$src\" -map 0:a:0 -map 0:v:0 $map_subs -c:v copy -c:a ac3 -ac 2 -af \"aresample=matrix_encoding=dplii\" \"${base}-stereo.${ext}\""
-    ffmpeg_command="ffmpeg -i \"$src\" $meta -map 0:a:0 -map 0:v:0 $map_subs -c:v copy -c:a ac3 -b:a 640k -vol 425 -af \"pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE\" $* \"${base}-stereo.${ext}\""
+    ffmpeg_command="ffmpeg -i \"$src\" $meta -map [filtered] -map 0:v:0 $map_subs -c:v copy -c:a ac3 -b:a 640k -filter_complex \"[0:a:0]pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE[a];[a]volume=1.66[filtered]\" $* \"${base}-stereo.${ext}\""
 
     echo "Running:"
     echo "${ffmpeg_command}"
