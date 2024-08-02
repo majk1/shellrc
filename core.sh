@@ -6,7 +6,7 @@
 [ -d ${HOME}/bin ] && export PATH="${PATH}:${HOME}/bin"
 export MC_COLOR_TABLE=editnormal=:normal=
 export LESSCHARSET=utf-8
-export GREP_COLOR="1;33"
+export GREP_COLORS="mt=1;33"
 
 # unlimited shell history
 export HISTSIZE=-1
