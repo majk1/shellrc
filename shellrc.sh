@@ -48,7 +48,7 @@ fi
 # Universal utils
 . "${SCRIPT_BASE_DIR}/utils/mkvMergeSub.sh"
 . "${SCRIPT_BASE_DIR}/utils/createShellCommandFromJar.sh"
-[ -e "${SCRIPT_BASE_DIR}/utils/z/z.sh" ] && . "${SCRIPT_BASE_DIR}/utils/z/z.sh"
+#[ -e "${SCRIPT_BASE_DIR}/utils/z/z.sh" ] && . "${SCRIPT_BASE_DIR}/utils/z/z.sh"
 . "${SCRIPT_BASE_DIR}/utils/ipv6-utils.sh"
 . "${SCRIPT_BASE_DIR}/utils/ffmpeg-utils.sh"
 . "${SCRIPT_BASE_DIR}/utils/uibuilder.sh"

@@ -113,3 +113,16 @@ function psgrep() {
 
 . "${SCRIPT_BASE_DIR}/utils/viscosity.sh"
 . "${SCRIPT_BASE_DIR}/utils/reminders.sh"
+
+
+function desktop-icons-hide() {
+	defaults write com.apple.finder CreateDesktop false && killall -HUP Finder
+}
+
+function desktop-icons-show() {
+	defaults write com.apple.finder CreateDesktop true && killall -HUP Finder
+}
+
+function force-light-mode-to-app() {
+	defaults write "$1" NSRequiresAquaSystemAppearance -bool yes
+}

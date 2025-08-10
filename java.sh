@@ -39,12 +39,13 @@ if [[ "$(uname)" = "Darwin" ]]; then
     export JAVA_16_HOME=$(java_home 16 2>/dev/null)
     export JAVA_17_HOME=$(java_home 17 2>/dev/null)
     export JAVA_18_HOME=$(java_home 18 2>/dev/null)
+    export JAVA_21_HOME=$(java_home 21 2>/dev/null)
     export GRAALVM_19_HOME=$(graalvm_home 19 2>/dev/null)
     export GRAALVM_21_HOME=$(graalvm_home 21 2>/dev/null)
     export GRAALVM_22_HOME=$(graalvm_home 22 2>/dev/null)
 
     if [[ -z "$JAVA_HOME" ]]; then
-        export JAVA_HOME=${JAVA_17_HOME}
+        export JAVA_HOME=${JAVA_21_HOME}
     fi
 
     alias java7='export JAVA_HOME=${JAVA_7_HOME}'
@@ -54,6 +55,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
     alias java16='export JAVA_HOME=${JAVA_16_HOME}'
     alias java17='export JAVA_HOME=${JAVA_17_HOME}'
     alias java18='export JAVA_HOME=${JAVA_18_HOME}'
+    alias java21='export JAVA_HOME=${JAVA_21_HOME}'
 
     function graalvm19() {
         export JAVA_HOME=${GRAALVM_19_HOME}
