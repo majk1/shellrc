@@ -73,6 +73,10 @@ bash-backward-kill-word() {
 }
 bindkey '^e' bash-backward-kill-word
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^x^e" edit-command-line
+
 type -p dircolors >/dev/null 2>&1
 [[ $? -eq 0 ]] && eval $(dircolors -b)
 

@@ -3,16 +3,16 @@
 
 if [[ "$(uname)" = "Darwin" ]]; then
     function java_home() {
-        base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "adoptopenjdk-${1}*" | sort | tail -n 1)"
-        if [[ -z "$base_path" ]]; then
-            base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "jdk-${1}*" | sort | tail -n 1)"
+        if [[ -z "$1" ]]; then
+            base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk.jdk" | sort | tail -n 1)"
+        else
+            base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk-${1}*" | sort | tail -n 1)"
+            
+            if [[ -z "$base_path" ]]; then
+                base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "jdk-${1}*" | sort | tail -n 1)"    
+            fi
         fi
-        if [[ -z "$base_path" ]]; then
-        	base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk-${1}*" | sort | tail -n 1)"
-        fi
-        if [[ -z "$base_path" ]]; then
-			base_path="$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -name "openjdk.jdk" | sort | tail -n 1)"
-		fi
+
         if [[ -d "$base_path" ]]; then
             echo "${base_path}/Contents/Home"
         else
@@ -40,12 +40,13 @@ if [[ "$(uname)" = "Darwin" ]]; then
     export JAVA_17_HOME=$(java_home 17 2>/dev/null)
     export JAVA_18_HOME=$(java_home 18 2>/dev/null)
     export JAVA_21_HOME=$(java_home 21 2>/dev/null)
+    export JAVA_LATEST_HOME=$(java_home 2>/dev/null)
     export GRAALVM_19_HOME=$(graalvm_home 19 2>/dev/null)
     export GRAALVM_21_HOME=$(graalvm_home 21 2>/dev/null)
     export GRAALVM_22_HOME=$(graalvm_home 22 2>/dev/null)
 
     if [[ -z "$JAVA_HOME" ]]; then
-        export JAVA_HOME=${JAVA_21_HOME}
+        export JAVA_HOME=${JAVA_LATEST_HOME}
     fi
 
     alias java7='export JAVA_HOME=${JAVA_7_HOME}'

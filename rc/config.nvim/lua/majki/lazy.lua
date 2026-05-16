@@ -12,13 +12,31 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {
+    "bluz71/vim-nightfly-colors",
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme nightfly]])
+    end,
+  },
 	{
-		"bluz71/vim-nightfly-colors",
-		priority = 1000,
-		config = function()
-			vim.cmd([[colorscheme nightfly]])
-		end,
-	},
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
 	{
 		"ibhagwan/fzf-lua",
 		-- optional for icon support
