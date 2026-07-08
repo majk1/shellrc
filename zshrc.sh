@@ -23,7 +23,7 @@ zstyle ':completion:*' max-errors 2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle :compinstall filename "${HOME}/.zshrc"
 
-autoload -Uz +X compinit && compinit -u
+autoload -Uz +X compinit && compinit -u -C
 autoload -U promptinit && promptinit
 autoload -U colors && colors
 autoload -U +X bashcompinit && bashcompinit
