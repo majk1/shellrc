@@ -346,6 +346,21 @@ pure() {
 	sh -c "$*"
 }
 
+current-date() {
+	date '+%Y%m%d'
+}
+
+current-datetime() {
+	case $1 in
+	"-d"|"--dash")
+		date '+%Y%m%d-%H%M%S'
+		;;
+	*)
+		date '+%Y%m%d%H%M%S'
+	  ;;
+	esac
+}
+
 # includes
 source $SCRIPT_BASE_DIR/idea.sh
 source $SCRIPT_BASE_DIR/git.sh
