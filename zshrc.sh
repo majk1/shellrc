@@ -136,9 +136,11 @@ __kk_replace() {
     if [[ -n ${KK_MAP[$BUFFER]+_} ]]; then
 		BUFFER="${KK_MAP[$BUFFER]}"
         CURSOR=${#BUFFER}
-    else
-    	zle fzf-completion
-    fi
+	elif (( $+widgets[fzf-completion] )); then
+		zle fzf-completion
+	else
+		zle expand-or-complete
+	fi
 }
 
 zle -N __kk_replace
