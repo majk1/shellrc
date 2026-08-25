@@ -55,3 +55,4 @@ longPrompt() {
 
 bind '"\C-e": backward-kill-word'
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

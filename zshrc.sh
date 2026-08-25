@@ -124,3 +124,22 @@ fi
 if [[ -e "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
 	. "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+typeset -A KK_MAP=(
+    gits	'git status --short'
+    kk		'kubectl --context k3s-home '
+)
+
+__kk_replace() {
+    if [[ -n ${KK_MAP[$BUFFER]+_} ]]; then
+		BUFFER="${KK_MAP[$BUFFER]}"
+        CURSOR=${#BUFFER}
+    else
+    	zle fzf-completion
+    fi
+}
+
+zle -N __kk_replace
+bindkey '^I' __kk_replace
