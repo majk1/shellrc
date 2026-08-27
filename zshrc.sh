@@ -130,6 +130,7 @@ fi
 typeset -A KK_MAP=(
     gits	'git status --short'
     kk		'kubectl --context k3s-home '
+    kks		'kubectl --context k3s-home get  -o jsonpath="{.status.conditions[0].type} - {.status.conditions[0].reason}:  {.status.conditions[0].message}"'
 )
 
 __kk_replace() {
