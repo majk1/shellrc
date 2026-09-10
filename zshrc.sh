@@ -18,6 +18,10 @@ if [[ -d /usr/local/share/zsh-completions ]]; then
 	fpath=(/usr/local/share/zsh-completions ${fpath})
 fi
 
+if [[ -d ${HOME}/.scripts/zsh-completion ]]; then
+	fpath=(${HOME}/.scripts/zsh-completion ${fpath})
+fi
+
 zstyle ':completion:*' completer _expand _complete _ignored
 zstyle ':completion:*' max-errors 2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
