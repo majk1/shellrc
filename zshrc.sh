@@ -32,8 +32,8 @@ for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
 	. ${compfile}
 done
 
-if [[ -d /usr/share/bash-completions/completions ]]; then
-for compfile in /usr/share/bash-completions/completions/*; do
+if [[ -d /usr/share/bash-completion/completions ]]; then
+for compfile in /usr/share/bash-completion/completions/*; do
 	. ${compfile}
 done
 fi
