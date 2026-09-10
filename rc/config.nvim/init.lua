@@ -19,8 +19,10 @@ vim.g.user = {
 vim.api.nvim_create_augroup(vim.g.user.event, {})
 
 vim.opt.clipboard="unnamedplus"
-vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
+vim.opt.expandtab = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 
 -- From vim defaults.vim

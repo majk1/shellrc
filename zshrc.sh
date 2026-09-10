@@ -32,6 +32,7 @@ for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
 	. ${compfile}
 done
 
+export fzf_default_completion="expand-or-complete"
 [[ -f ~/.fzf.zsh ]] && . ~/.fzf.zsh
 
 HISTFILE=~/.histfile
@@ -125,8 +126,6 @@ if [[ -e "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting
 	. "$SCRIPT_BASE_DIR/utils/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 typeset -A KK_MAP=(
     gits	'git status --short'
     kk		'kubectl --context k3s-home '
@@ -135,13 +134,16 @@ typeset -A KK_MAP=(
 
 __kk_replace() {
     if [[ -n ${KK_MAP[$BUFFER]+_} ]]; then
-		BUFFER="${KK_MAP[$BUFFER]}"
+        BUFFER="${KK_MAP[$BUFFER]}"
         CURSOR=${#BUFFER}
-	elif (( $+widgets[fzf-completion] )); then
-		zle fzf-completion
-	else
-		zle expand-or-complete
-	fi
+    elif (( $+widgets[fzf-completion] )); then
+        if [[ "$fzf_default_completion" == "__kk_replace" || "$fzf_default_completion" == "fzf-completion" || -z "$fzf_default_completion" ]]; then
+            fzf_default_completion="expand-or-complete"
+        fi
+        zle fzf-completion
+    else
+        zle expand-or-complete
+    fi
 }
 
 zle -N __kk_replace
