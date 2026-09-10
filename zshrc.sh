@@ -32,12 +32,6 @@ for compfile in ${SCRIPT_BASE_DIR}/bash-completion/*.sh; do
 	. ${compfile}
 done
 
-if [[ -d /usr/share/bash-completion/completions ]]; then
-for compfile in /usr/share/bash-completion/completions/*; do
-	. ${compfile}
-done
-fi
-
 export fzf_default_completion="expand-or-complete"
 [[ -f ~/.fzf.zsh ]] && . ~/.fzf.zsh
 
