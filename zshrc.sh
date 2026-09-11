@@ -136,6 +136,12 @@ typeset -A KK_MAP=(
     kks		'kubectl --context k3s-home get  -o jsonpath="{.status.conditions[0].type} - {.status.conditions[0].reason}:  {.status.conditions[0].message}"'
 )
 
+if [[ "$(uname)" = "Darwin" ]]; then
+    KK_MAP+=(
+    bb		'brew update && brew upgrade --greedy --no-ask && brew cleanup'
+    )
+fi
+
 __kk_replace() {
     if [[ -n ${KK_MAP[$BUFFER]+_} ]]; then
         BUFFER="${KK_MAP[$BUFFER]}"
