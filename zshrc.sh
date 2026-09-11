@@ -10,12 +10,18 @@ if [[ -d /etc/profile.d ]]; then
 	unset i
 fi
 
+typeset -U fpath
+
 if type brew &>/dev/null; then
   fpath=("$(brew --prefix)/share/zsh/site-functions" ${fpath})
 fi
 
 if [[ -d /usr/local/share/zsh-completions ]]; then
 	fpath=(/usr/local/share/zsh-completions ${fpath})
+fi
+
+if [[ -d ${SCRIPT_BASE_DIR}/zsh-completion ]]; then
+	fpath=(${SCRIPT_BASE_DIR}/zsh-completion ${fpath})
 fi
 
 if [[ -d ${HOME}/.scripts/zsh-completion ]]; then
@@ -27,7 +33,9 @@ zstyle ':completion:*' max-errors 2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle :compinstall filename "${HOME}/.zshrc"
 
-autoload -Uz +X compinit && compinit -u -C
+# -u skips compaudit; -C is deliberately not used, as it would also skip the
+# dump freshness check, so new completions in fpath would never be picked up
+autoload -Uz +X compinit && compinit -u
 autoload -U promptinit && promptinit
 autoload -U colors && colors
 autoload -U +X bashcompinit && bashcompinit
