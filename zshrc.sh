@@ -140,6 +140,7 @@ fi
 
 typeset -A KK_MAP=(
     gits	'git status --short'
+	dp		'docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
     kk		'kubectl --context k3s-home '
     kks		'kubectl --context k3s-home get  -o jsonpath="{.status.conditions[0].type} - {.status.conditions[0].reason}:  {.status.conditions[0].message}"'
 )
@@ -147,6 +148,8 @@ typeset -A KK_MAP=(
 if [[ "$(uname)" = "Darwin" ]]; then
     KK_MAP+=(
     bb		'brew update && brew upgrade --greedy --no-ask && brew cleanup'
+    cdis	'caffeinate -dis'
+    cis		'caffeinate -is'
     )
 fi
 
@@ -166,3 +169,44 @@ __kk_replace() {
 
 zle -N __kk_replace
 bindkey '^I' __kk_replace
+
+
+__get_docker_contexts() {
+        docker context ls --format '{{.Name}}' 2>/dev/null | grep -v -E 'default'
+}
+
+__get_docker_context_host() {
+        if $(__get_docker_contexts | grep -q $1); then
+                docker context inspect $1 | jq -r '.[].Endpoints.docker.Host'
+        else
+                echo "Docker context not found: $1" >&2
+                return 1
+        fi
+}
+
+dhost() {
+        DOCKER_HOST=$(__get_docker_context_host $1)
+        RET=$?
+        if [ $RET -eq 0 ]; then
+                echo "Docker context activated with host: $DOCKER_HOST"
+                export DOCKER_HOST
+        fi
+        return $RET
+}
+
+_dhost() {
+        local -a contexts
+        contexts=()
+        contexts+=($(__get_docker_contexts))
+
+        _arguments '1:context:->context' && return 0
+
+        case $state in
+                context)
+                        _describe 'context' contexts
+                ;;
+        esac
+}
+
+compdef _dhost dhost
+
