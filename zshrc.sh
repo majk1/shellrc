@@ -155,7 +155,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
     )
 fi
 
-if [[ "$(uname -v | grep -qiE 'debian|ubuntu') ]]; then
+if [[ "$(uname -v | grep -qiE 'debian|ubuntu')" ]]; then
     KK_MAP+=(
     au		'sudo apt update && sudo apt full-upgrade -y && sudo apt clean'
     )
