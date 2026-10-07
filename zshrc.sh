@@ -143,6 +143,8 @@ typeset -A KK_MAP=(
 	dp		'docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
     kk		'kubectl --context k3s-home '
     kks		'kubectl --context k3s-home get  -o jsonpath="{.status.conditions[0].type} - {.status.conditions[0].reason}:  {.status.conditions[0].message}"'
+    nvp		'npm version patch --message "patch version: %s" --tag-version-prefix="v"'
+    nvm		'npm version minor --message "minor version: %s" --tag-version-prefix="v"'
 )
 
 if [[ "$(uname)" = "Darwin" ]]; then
@@ -150,6 +152,12 @@ if [[ "$(uname)" = "Darwin" ]]; then
     bb		'brew update && brew upgrade --greedy --no-ask && brew cleanup'
     cdis	'caffeinate -dis'
     cis		'caffeinate -is'
+    )
+fi
+
+if [[ "$(uname -v | grep -qiE 'debian|ubuntu') ]]; then
+    KK_MAP+=(
+    au		'sudo apt update && sudo apt full-upgrade -y && sudo apt clean'
     )
 fi
 
