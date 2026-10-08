@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+cpu=$(top -l 1 | awk '/CPU usage/ {gsub(/%/, "", $3); gsub(/,/, "", $3); print int($3 + $5)}')
+mem=$(vm_stat | awk '
+  /Pages free/ {free=$3}
+  /Pages active/ {active=$3}
+  /Pages inactive/ {inactive=$3}
+  /Pages speculative/ {spec=$3}
+  /Pages wired down/ {wired=$4}
+  END {
+    gsub(/\./, "", free); gsub(/\./, "", active); gsub(/\./, "", inactive); gsub(/\./, "", spec); gsub(/\./, "", wired)
+    used = active + inactive + spec + wired
+    total = used + free
+    if (total > 0) printf "%d", (used / total) * 100
+  }')
+git_branch=$(git -C "$PWD" branch --show-current 2>/dev/null)
+
+printf "CPU:%s%% MEM:%s%%" "$cpu" "$mem"
+[ -n "$git_branch" ] && printf "  %s" "$git_branch"
