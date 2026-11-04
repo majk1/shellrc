@@ -140,11 +140,14 @@ fi
 
 typeset -A KK_MAP=(
     gits	'git status --short'
+    gitt	'git log --graph --abbrev-commit --all --pretty=format:"%C(red)%h%C(reset) - %C(green)(%ar)%C(reset) %C(auto)%s - %C(bold blue)%an %C(auto)%d"'
 	dp		'docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
     kk		'kubectl --context k3s-home '
     kks		'kubectl --context k3s-home get  -o jsonpath="{.status.conditions[0].type} - {.status.conditions[0].reason}:  {.status.conditions[0].message}"'
     nvp		'npm version patch --message "patch version: %s" --tag-version-prefix="v"'
     nvm		'npm version minor --message "minor version: %s" --tag-version-prefix="v"'
+    rsc		'rsync -avP'
+    rscm	'rsync -avp --remove-source-files'
 )
 
 if [[ "$(uname)" = "Darwin" ]]; then
@@ -178,6 +181,9 @@ __kk_replace() {
 zle -N __kk_replace
 bindkey '^I' __kk_replace
 
+print_kkmap() {
+	printf '%-15s %s\n' SHORTCUT COMMAND; printf '%-15s %s\n' ----- -----; for k in "${(@ko)KK_MAP}"; do printf '%-15s %s\n' "$k" "${KK_MAP[$k]}"; done
+}
 
 __get_docker_contexts() {
         docker context ls --format '{{.Name}}' 2>/dev/null | grep -v -E 'default'
