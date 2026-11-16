@@ -103,7 +103,24 @@ require("lazy").setup({
     opts = {
       keymap = { preset = "default" }, -- <C-y> accept, <C-n>/<C-p> select, <C-space> open
       completion = { documentation = { auto_show = true } },
-      sources = { default = { "lsp", "path", "snippets", "buffer" } },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lsp = {
+            -- several servers can answer for the same file (compose: yamlls + docker_language_server);
+            -- a label offered by one client is dropped from the others, so keys are not listed twice
+            transform_items = function(_, items)
+              local owner = {}
+              return vim.tbl_filter(function(item)
+                if owner[item.label] == nil then
+                  owner[item.label] = item.client_id
+                end
+                return owner[item.label] == item.client_id
+              end, items)
+            end,
+          },
+        },
+      },
       fuzzy = { implementation = "prefer_rust" }, -- silently falls back to Lua where no binary exists
     },
   },
@@ -118,9 +135,12 @@ require("lazy").setup({
     },
     opts = function()
       local servers = { "docker_language_server" }
-      -- dockerls is installed with npm; skip it where there is no node, so Mason does not error
+      -- dockerls and yamlls are installed with npm; skip them where there is no node, so Mason does not error
       if vim.fn.executable("npm") == 1 then
         table.insert(servers, "dockerls")
+        -- yamlls: all YAML files, schemas from SchemaStore; unlike docker_language_server it also
+        -- completes compose keys while the YAML is still half-typed (invalid)
+        table.insert(servers, "yamlls")
       end
       return { ensure_installed = servers } -- automatic_enable (v2 default) also enables them
     end,
