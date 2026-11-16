@@ -11,6 +11,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- nvim-lspconfig needs Nvim 0.11.3+; on older Nvim (e.g. apt on Linux) the LSP/completion part is skipped
+local has_lsp = vim.fn.has("nvim-0.11.3") == 1
+
 require("lazy").setup({
   {
     "bluz71/vim-nightfly-colors",
@@ -92,6 +95,45 @@ require("lazy").setup({
         extensions = {}
 			})
 		end
-	}
+	},
+  {
+    "saghen/blink.cmp",
+    cond = has_lsp,
+    version = "1.*", -- prebuilt fuzzy matcher binary, no Rust toolchain needed
+    opts = {
+      keymap = { preset = "default" }, -- <C-y> accept, <C-n>/<C-p> select, <C-space> open
+      completion = { documentation = { auto_show = true } },
+      sources = { default = { "lsp", "path", "snippets", "buffer" } },
+      fuzzy = { implementation = "prefer_rust" }, -- silently falls back to Lua where no binary exists
+    },
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    cond = has_lsp,
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig", -- server configs (dockerls, docker_language_server, systemd_lsp)
+      "saghen/blink.cmp",
+    },
+    opts = function()
+      local servers = { "docker_language_server" }
+      -- dockerls is installed with npm; skip it where there is no node, so Mason does not error
+      if vim.fn.executable("npm") == 1 then
+        table.insert(servers, "dockerls")
+      end
+      return { ensure_installed = servers } -- automatic_enable (v2 default) also enables them
+    end,
+    config = function(_, opts)
+      vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
+      -- Dockerfiles are handled by dockerls, so no duplicate diagnostics
+      vim.lsp.config("docker_language_server", { filetypes = { "yaml.docker-compose", "hcl.docker-bake" } })
+      require("mason-lspconfig").setup(opts)
+      -- installed with cargo (Mason's macOS arm64 binary is x86_64) or Mason; no error when missing
+      if vim.fn.executable("systemd-lsp") == 1 then
+        vim.lsp.enable("systemd_lsp")
+      end
+    end,
+  },
 })
 
