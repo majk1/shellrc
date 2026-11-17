@@ -339,6 +339,7 @@ update-shellrc() {
 }
 
 pull-shellrc() {
+	pushd >/dev/null
 	echo "Updating shellrc in $SCRIPT_BASE_DIR ..."
 	cd $SCRIPT_BASE_DIR >/dev/null 2>&1 && \
 	git reset --hard >/dev/null 2>&1  && \
@@ -348,6 +349,7 @@ pull-shellrc() {
 	else
 		echo "Shellrc has been updated"
 	fi
+	popd >/dev/null
 }
 
 if type -p source-highlight >/dev/null 2>&1; then
