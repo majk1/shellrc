@@ -338,6 +338,18 @@ update-shellrc() {
     fi
 }
 
+pull-shellrc() {
+	echo "Updating shellrc in $SCRIPT_BASE_DIR ..."
+	cd $SCRIPT_BASE_DIR >/dev/null 2>&1 && \
+	git reset --hard >/dev/null 2>&1  && \
+	git pull >/dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo "Could not pull shellrc" >&2
+	else
+		echo "Shellrc has been updated"
+	fi
+}
+
 if type -p source-highlight >/dev/null 2>&1; then
     alias colorcat='source-highlight -n -f esc -i '
 fi
