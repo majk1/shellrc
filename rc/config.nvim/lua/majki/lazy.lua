@@ -141,6 +141,10 @@ require("lazy").setup({
         -- yamlls: all YAML files, schemas from SchemaStore; unlike docker_language_server it also
         -- completes compose keys while the YAML is still half-typed (invalid)
         table.insert(servers, "yamlls")
+        -- ansiblels: 'yaml.ansible' files; completes modules (ansible.builtin.*), their options and
+        -- variables inside {{ }}. Needs `ansible` on the PATH for the module list/docs
+        -- (macOS: brew install ansible); `ansible-lint` is optional, used for diagnostics when present
+        table.insert(servers, "ansiblels")
       end
       return { ensure_installed = servers } -- automatic_enable (v2 default) also enables them
     end,
@@ -148,6 +152,16 @@ require("lazy").setup({
       vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
       -- Dockerfiles are handled by dockerls, so no duplicate diagnostics
       vim.lsp.config("docker_language_server", { filetypes = { "yaml.docker-compose", "hcl.docker-bake" } })
+      -- macOS often has only python3, no `python`; lint only where ansible-lint exists, so no errors
+      vim.lsp.config("ansiblels", {
+        root_markers = { "ansible.cfg", ".ansible-lint", ".git" },
+        settings = {
+          ansible = {
+            python = { interpreterPath = vim.fn.executable("python") == 1 and "python" or "python3" },
+            validation = { lint = { enabled = vim.fn.executable("ansible-lint") == 1 } },
+          },
+        },
+      })
       require("mason-lspconfig").setup(opts)
       -- installed with cargo (Mason's macOS arm64 binary is x86_64) or Mason; no error when missing
       if vim.fn.executable("systemd-lsp") == 1 then
