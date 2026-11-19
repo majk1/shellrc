@@ -5,14 +5,31 @@ if [[ -z "$SHOW_GIT_BRANCH_PROMPT" ]]; then
     export SHOW_GIT_BRANCH_PROMPT=1
 fi
 
+if [[ -z "$SHOW_GIT_CHANGES_PROMPT" ]]; then
+    export SHOW_GIT_CHANGES_PROMPT=1
+fi
+
+# prints " (branch +added -deleted)" with green / red counts of uncommitted line changes
+# (staged + unstaged, compared to HEAD); the caller's PS1 sets the magenta base color
 function _git_ps1() {
     [[ ${SHOW_GIT_BRANCH_PROMPT} -eq 0 ]] && return 1
-	_git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-	if [[ $? -eq 0 ]]; then
-		echo -ne " (${_git_branch})"
-	else
-		echo -ne ""
-	fi
+    _git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return 0
+    local green red back changes=""
+    if [[ -n "$ZSH_VERSION" ]]; then
+        # zsh expands % escapes in the substituted output (PROMPT_SUBST)
+        green='%{\e[0;32m%}'; red='%{\e[0;31m%}'; back='%{\e[0;35m%}'
+        _git_branch=${_git_branch//\%/%%}
+    else
+        # bash: \001 and \002 mark non-printing chars, like \[ and \] in PS1
+        green='\001\e[0;32m\002'; red='\001\e[0;31m\002'; back='\001\e[0;35m\002'
+    fi
+    if [[ ${SHOW_GIT_CHANGES_PROMPT} -ne 0 ]]; then
+        local add del
+        read add del < <(git diff --numstat HEAD 2>/dev/null | awk '{a+=$1; d+=$2} END {print a+0, d+0}')
+        [[ ${add:-0} -gt 0 ]] && changes+=" ${green}+${add}${back}"
+        [[ ${del:-0} -gt 0 ]] && changes+=" ${red}-${del}${back}"
+    fi
+    echo -ne " (${_git_branch}${changes})"
 }
 
 function git-pull() {
